@@ -1,0 +1,9 @@
+{
+  "userIgnoreFilters": [
+    "图片/HTTP/"
+  ],
+  "alwaysUpdateLinks": true,
+  "spellcheck": false,
+  "showLineNumber": false,
+  "readableLineLength": true
+}

@@ -1,0 +1,83 @@
+# myclirc 配置文件（中文注释版，按功能分类）
+# vi: ft=dosini
+
+## 一、核心基础配置（[main]）
+[main]
+smart_completion = True
+multi_line = True
+destructive_warning = True
+log_file = ~/.mycli.log
+log_level = INFO
+# audit_log = ~/.mycli-audit.log
+timing = True
+beep_after_seconds = 0
+table_format = ascii
+redirect_format = csv
+post_redirect_command =
+syntax_style = default
+key_bindings = emacs
+wider_completion_menu = False
+prompt = '\t \u@\h:\d> '
+prompt_continuation = '->'
+less_chatty = False
+login_path_as_host = False
+auto_vertical_output = True
+keyword_casing = auto
+enable_pager = False
+pager = ""
+
+## 二、快捷键配置（[keys]）
+[keys]
+control_r = auto
+
+## 三、颜色样式配置（[colors]）
+[colors]
+completion-menu.completion.current = 'bg:#ffffff #000000'
+completion-menu.completion = 'bg:#008888 #ffffff'
+completion-menu.meta.completion.current = 'bg:#44aaaa #000000'
+completion-menu.meta.completion = 'bg:#448888 #ffffff'
+completion-menu.multi-column-meta = 'bg:#aaffff #000000'
+scrollbar.arrow = 'bg:#003333'
+scrollbar = 'bg:#00aaaa'
+selected = '#ffffff bg:#6666aa'
+search = '#ffffff bg:#4444aa'
+search.current = '#ffffff bg:#44aa44'
+bottom-toolbar = 'bg:#222222 #aaaaaa'
+bottom-toolbar.off = 'bg:#222222 #888888'
+bottom-toolbar.on = 'bg:#222222 #ffffff'
+search-toolbar = 'noinherit bold'
+search-toolbar.text = 'nobold'
+system-toolbar = 'noinherit bold'
+arg-toolbar = 'noinherit bold'
+arg-toolbar.text = 'nobold'
+bottom-toolbar.transaction.valid = 'bg:#222222 #00ff5f bold'
+bottom-toolbar.transaction.failed = 'bg:#222222 #ff005f bold'
+output.header = "#ffffff bold"
+output.odd-row = ""
+output.even-row = ""
+output.null = "#808080"
+
+## 四、收藏查询配置（[favorite_queries]）
+[favorite_queries]
+# example = "SELECT * FROM example_table WHERE id = 1"
+
+## 五、初始化命令配置（[init-commands]）
+[init-commands]
+# read_only = "SET SESSION TRANSACTION READ ONLY"
+set_utf8mb4 = "SET NAMES utf8mb4; SET character_set_client = utf8mb4; SET character_set_connection = utf8mb4; SET character_set_database = utf8mb4;"
+
+## 六、DSN别名配置（[alias_dsn] & [alias_dsn.init-commands]）
+[alias_dsn]
+# example_dsn = mysql://user:password@localhost:3306/mydb
+
+[alias_dsn.init-commands]
+# example_dsn = "SET sql_select_limit=1000; SET time_zone='+00:00'"
+
+## 七、分页配置（[pager]）
+[pager]
+pager = ""
+
+## 八、显示格式配置（[display]）
+[display]
+column_width = 50
+charset = utf8mb4

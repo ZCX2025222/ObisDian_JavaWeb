@@ -1,0 +1,231 @@
+{
+  "main": {
+    "id": "4083643bed1ff7b2",
+    "type": "split",
+    "children": [
+      {
+        "id": "f072a31dad4a769f",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "453d589f27a9e0c4",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "新标签页"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "b791e6f9041d6b47",
+    "type": "split",
+    "children": [
+      {
+        "id": "e09100699833d831",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "addb4947a341a4da",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "搜索"
+            }
+          },
+          {
+            "id": "e7875d1ca2ad0303",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "书签"
+            }
+          },
+          {
+            "id": "7830817302a2b781",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "文件列表"
+            }
+          },
+          {
+            "id": "e7cf8cc72978a7fb",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "followCursor": false,
+                "showSearch": true,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "大纲"
+            }
+          }
+        ],
+        "currentTab": 2
+      }
+    ],
+    "direction": "horizontal",
+    "width": 200
+  },
+  "right": {
+    "id": "5c06164cf052e030",
+    "type": "split",
+    "children": [
+      {
+        "id": "69b75e163ee54e8b",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "fae68e444669b225",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "CSS.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "CSS 的反向链接列表"
+            }
+          },
+          {
+            "id": "ff31cb8473945523",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "HTML.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "HTML 的出链列表"
+            }
+          },
+          {
+            "id": "6e9557ba7bb3ab25",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "标签"
+            }
+          },
+          {
+            "id": "e52e42c0d12ba68b",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "HTML.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "HTML 的大纲"
+            }
+          },
+          {
+            "id": "b004d6d00e7c7e4f",
+            "type": "leaf",
+            "state": {
+              "type": "git-view",
+              "state": {},
+              "icon": "git-pull-request",
+              "title": "源代码管理"
+            }
+          }
+        ],
+        "currentTab": 4
+      }
+    ],
+    "direction": "horizontal",
+    "width": 200
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:打开快速切换": false,
+      "graph:查看关系图谱": false,
+      "canvas:新建白板": false,
+      "daily-notes:打开/创建今天的日记": false,
+      "templates:插入模板": false,
+      "command-palette:打开命令面板": false,
+      "i18n:I18N": false,
+      "obsidian-git:打开Git源代码管理": false
+    }
+  },
+  "active": "453d589f27a9e0c4",
+  "lastOpenFiles": [
+    "README.md",
+    "未命名 2.base",
+    "未命名 3.base",
+    "未命名 4.base",
+    "未命名.base",
+    "未命名 1.base",
+    "CSS.md",
+    "HTML.md",
+    "图片/CSS/合并后.png",
+    "图片/CSS/合并前.png",
+    "图片/CSS/边框圆角.png",
+    "Pasted image 20251129154340.png",
+    "MySQL数据库.md",
+    "JavaWeb（部分）.md",
+    "未命名.md",
+    "JavaScript.md",
+    "文件/mycli 配置文件（中文注释版）/myclirc.txt",
+    "文件/mycli 配置文件（中文注释版）",
+    "文件/mycli 配置文件/myclirc.txt",
+    "文件/mycli 配置文件",
+    "文件",
+    "Pasted image 20251125143146.png",
+    "图片/CSS/盒子模型.png",
+    "图片/CSS/包装盒.png",
+    "SQL.md",
+    "JavaWeb遇到的问题.md",
+    "^8c5598.md",
+    "图片/CSS/权重叠加计算.png",
+    "欢迎.md",
+    "图片/Servlet技术/Servlet应用程序体系结构.png",
+    "Excalidraw/Drawing 2025-11-12 00.05.01.excalidraw.md",
+    "图片/CSS/浮动应用案例3.png",
+    "输入框text.md",
+    "Vscode汉化.md"
+  ]
+}
