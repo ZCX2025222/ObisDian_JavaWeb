@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "f072a31dad4a769f",
+        "id": "9b15597301a04bb0",
         "type": "tabs",
         "children": [
           {
-            "id": "453d589f27a9e0c4",
+            "id": "f781ac83dfe29b36",
             "type": "leaf",
             "state": {
               "type": "empty",
@@ -191,8 +191,9 @@
       "obsidian-git:打开Git源代码管理": false
     }
   },
-  "active": "453d589f27a9e0c4",
+  "active": "f781ac83dfe29b36",
   "lastOpenFiles": [
+    "新建 文本文档.txt",
     "README.md",
     "未命名 2.base",
     "未命名 3.base",
