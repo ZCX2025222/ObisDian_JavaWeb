@@ -8,13 +8,17 @@
         "type": "tabs",
         "children": [
           {
-            "id": "97cc3da66e668d05",
+            "id": "310a034966f588dd",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "MySQL数据库.md",
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "新标签页"
+              "title": "MySQL数据库"
             }
           }
         ]
@@ -76,12 +80,13 @@
             "state": {
               "type": "outline",
               "state": {
+                "file": "MySQL数据库.md",
                 "followCursor": false,
                 "showSearch": true,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "大纲"
+              "title": "MySQL数据库 的大纲"
             }
           }
         ],
@@ -89,7 +94,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 200,
+    "collapsed": true
   },
   "right": {
     "id": "5c06164cf052e030",
@@ -192,42 +198,7 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "floating": {
-    "id": "f76c6c1157598fac",
-    "type": "floating",
-    "children": [
-      {
-        "id": "580ee5def55bae61",
-        "type": "window",
-        "children": [
-          {
-            "id": "383bdbfe24ed0a59",
-            "type": "tabs",
-            "children": [
-              {
-                "id": "80bb3f5ed250732a",
-                "type": "leaf",
-                "state": {
-                  "type": "i18n-download-view",
-                  "state": {},
-                  "icon": "i18n_translate",
-                  "title": "下载视图"
-                }
-              }
-            ]
-          }
-        ],
-        "direction": "vertical",
-        "x": 256,
-        "y": 56,
-        "width": 1024,
-        "height": 800,
-        "maximize": false,
-        "zoom": 1
-      }
-    ]
-  },
-  "active": "80bb3f5ed250732a",
+  "active": "310a034966f588dd",
   "lastOpenFiles": [
     "MySQL数据库.md",
     "JavaWeb遇到的问题.md",
