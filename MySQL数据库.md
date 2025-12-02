@@ -383,11 +383,13 @@ IS NULL
 | \[init-commands] | set_utf8mb4 = "SET character_set_results = utf8mb4"                   | set_utf8mb4 = "SET NAMES utf8mb4; SET character_set_client = utf8mb4; SET character_set_connection = utf8mb4; SET character_set_database = utf8mb4;" | 全链路同步字符集（客户端、连接、数据库、结果集），彻底避免编码断层。                               |
 | \[colors]        | `output.header = "#00ff5f bold"`（与深色背景冲突，显示白块）                        | output.header = "#ffffff bold"                                                                                                                       | 表头（字段名）改为白色加粗，与深色终端背景形成高对比度，解决 “白方块” 渲染异常。                       |
 
-mycli 的配置文件：![[myclirc.txt]]
-mucli 的中文注释版配置文件：![[文件/mycli 配置文件（中文注释版）/myclirc.txt]]
+mycli 的配置文件：![[assets/文件/mycli 配置文件/myclirc.txt]]
+mucli 的中文注释版配置文件：![[assets/文件/mycli 配置文件（中文注释版）/myclirc.txt]]
 记得将文件名改成：".myclirc"
 
 
 
+---
 
+![](assets/MySQL数据库/鹿.gif)
 

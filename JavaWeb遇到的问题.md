@@ -4,4 +4,4 @@
 
 # 2. 网页显示中文乱码
 导入这个文件到项目中，然后使用里面的方法。
-![[EncodingUtil.java]]
+![[assets/JavaWeb中文乱码解决/EncodingUtil.java]]

@@ -6,7 +6,7 @@ jar包：tomcat-10.1.29\lib\servlet-api.jar
 # Servlet 技术
 ## 初识Servlet
 ### 1. Servlet的应用程序体系结构：
-![[Servlet应用程序体系结构.png]]
+![[assets/图片/Servlet技术/Servlet应用程序体系结构.png]]
 打个比喻：
 
 | 餐厅角色        | Servlet MVC架构       | 职责说明                                          |
