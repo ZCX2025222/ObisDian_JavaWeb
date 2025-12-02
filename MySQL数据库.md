@@ -275,18 +275,35 @@ DELIMITER 新结束符号
  DELIMITER $$
 ```
 
-然后写函数，以下是函数的语法格式：
+存储过程和语法是两个东西，各有各的语法格式。
+
+然后写过程，以下是过程的语法格式：
 ```mysql
-CREATE PROCEDURE 存储过程函数名(参数) 
+-- 创建存储过程。
+CREATE PROCEDURE 存储过程名(参数) 
 	存储特性 
 	BEGIN
 		SQL语句集合;
 	END$$
 ```
+用 call 调用。
+
+以下是函数语法格式：
+```mysql
+-- 创建函数。
+CREATE FUNCTION f1()
+RETURNS INT
+READS SQL DATA
+RETURN
+(SELECT COUN(*) FROM b1)
+$$
+```
+用 select 调用。
+
+
+
 
 123456
-
-
 
 ---
 
