@@ -282,20 +282,20 @@ DELIMITER 新结束符号
 -- 创建存储过程。
 CREATE PROCEDURE 存储过程名(参数) 
 	存储特性 
-	BEGIN
+	BEGIN                                              
 		SQL语句集合;
-	END$$
+	END$$  
 ```
 用 call 调用。
 
 以下是函数语法格式：
 ```mysql
 -- 创建函数。
-CREATE FUNCTION f1()
-RETURNS INT
-READS SQL DATA
-RETURN
-(SELECT COUN(*) FROM b1)
+CREATE FUNCTION f1()                                                                                                    
+RETURNS INT      
+READS SQL DATA      
+RETURN      
+(SELECT COUN(*) FROM b1)                                                                                                    
 $$
 ```
 用 select 调用。
