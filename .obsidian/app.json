@@ -1,9 +1,11 @@
 {
-  "userIgnoreFilters": [
-    "图片/HTTP/"
-  ],
+  "userIgnoreFilters": null,
   "alwaysUpdateLinks": true,
   "spellcheck": false,
   "showLineNumber": false,
-  "readableLineLength": true
+  "readableLineLength": true,
+  "showUnsupportedFiles": true,
+  "newLinkFormat": "relative",
+  "attachmentFolderPath": "/",
+  "useMarkdownLinks": true
 }

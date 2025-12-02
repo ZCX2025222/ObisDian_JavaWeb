@@ -11,10 +11,14 @@
             "id": "f781ac83dfe29b36",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "JavaWeb（部分）.md",
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "新标签页"
+              "title": "JavaWeb（部分）"
             }
           }
         ]
@@ -64,7 +68,7 @@
               "type": "file-explorer",
               "state": {
                 "sortOrder": "alphabetical",
-                "autoReveal": false
+                "autoReveal": true
               },
               "icon": "lucide-folder-closed",
               "title": "文件列表"
@@ -173,7 +177,7 @@
             }
           }
         ],
-        "currentTab": 3
+        "currentTab": 4
       }
     ],
     "direction": "horizontal",
@@ -194,36 +198,35 @@
   },
   "active": "f781ac83dfe29b36",
   "lastOpenFiles": [
+    "JavaWeb遇到的问题.md",
+    "MySQL数据库.md",
+    "JavaWeb（部分）.md",
+    "README.md",
+    "未命名",
+    "JavaScript.md",
+    "HTML.md",
+    "CSS.md",
+    "欢迎.md",
+    "SQL.md",
     "同步测试文件",
     "新建 文本文档.txt",
-    "README.md",
     "未命名 2.base",
     "未命名 3.base",
     "未命名 4.base",
     "未命名.base",
     "未命名 1.base",
-    "CSS.md",
-    "HTML.md",
     "图片/CSS/合并后.png",
     "图片/CSS/合并前.png",
     "图片/CSS/边框圆角.png",
     "Pasted image 20251129154340.png",
-    "MySQL数据库.md",
-    "JavaWeb（部分）.md",
     "未命名.md",
-    "JavaScript.md",
     "文件/mycli 配置文件（中文注释版）/myclirc.txt",
     "文件/mycli 配置文件（中文注释版）",
-    "文件/mycli 配置文件/myclirc.txt",
-    "文件/mycli 配置文件",
     "Pasted image 20251125143146.png",
     "图片/CSS/盒子模型.png",
     "图片/CSS/包装盒.png",
-    "SQL.md",
-    "JavaWeb遇到的问题.md",
     "^8c5598.md",
     "图片/CSS/权重叠加计算.png",
-    "欢迎.md",
     "图片/Servlet技术/Servlet应用程序体系结构.png",
     "Excalidraw/Drawing 2025-11-12 00.05.01.excalidraw.md",
     "图片/CSS/浮动应用案例3.png",
