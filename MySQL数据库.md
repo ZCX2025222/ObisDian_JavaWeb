@@ -263,6 +263,31 @@ SELECT * FROM users WHERE name REGEXP '李';
 略
 
 
+
+---
+
+# 存储过程和函数
+首先更改SQL命令结束符，防止产生冲突。
+```mysql
+DELIMITER 新结束符号
+ 
+ -- 如
+ DELIMITER $$
+```
+
+然后写函数，以下是函数的语法格式：
+```mysql
+CREATE PROCEDURE 存储过程函数名(参数) 
+	存储特性 
+	BEGIN
+		SQL语句集合;
+	END$$
+```
+
+
+
+
+
 ---
 
 # MySQL常用函数

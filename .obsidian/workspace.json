@@ -4,21 +4,17 @@
     "type": "split",
     "children": [
       {
-        "id": "9b15597301a04bb0",
+        "id": "c2907841a6f0ae96",
         "type": "tabs",
         "children": [
           {
-            "id": "f781ac83dfe29b36",
+            "id": "97cc3da66e668d05",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "JavaWeb（部分）.md",
-                "mode": "source",
-                "source": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "JavaWeb（部分）"
+              "title": "新标签页"
             }
           }
         ]
@@ -89,7 +85,7 @@
             }
           }
         ],
-        "currentTab": 2
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
@@ -173,7 +169,7 @@
               "type": "git-view",
               "state": {},
               "icon": "git-pull-request",
-              "title": "源代码管理"
+              "title": "Source Control"
             }
           }
         ],
@@ -181,8 +177,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200,
-    "collapsed": true
+    "width": 200
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -193,13 +188,49 @@
       "templates:插入模板": false,
       "command-palette:打开命令面板": false,
       "i18n:I18N": false,
-      "obsidian-git:打开Git源代码管理": false
+      "obsidian-git:打开Git源代码管理": false,
+      "obsidian-git:Open Git source control": false
     }
   },
-  "active": "f781ac83dfe29b36",
+  "floating": {
+    "id": "f76c6c1157598fac",
+    "type": "floating",
+    "children": [
+      {
+        "id": "580ee5def55bae61",
+        "type": "window",
+        "children": [
+          {
+            "id": "383bdbfe24ed0a59",
+            "type": "tabs",
+            "children": [
+              {
+                "id": "80bb3f5ed250732a",
+                "type": "leaf",
+                "state": {
+                  "type": "i18n-download-view",
+                  "state": {},
+                  "icon": "i18n_translate",
+                  "title": "下载视图"
+                }
+              }
+            ]
+          }
+        ],
+        "direction": "vertical",
+        "x": 256,
+        "y": 56,
+        "width": 1024,
+        "height": 800,
+        "maximize": false,
+        "zoom": 1
+      }
+    ]
+  },
+  "active": "80bb3f5ed250732a",
   "lastOpenFiles": [
-    "JavaWeb遇到的问题.md",
     "MySQL数据库.md",
+    "JavaWeb遇到的问题.md",
     "JavaWeb（部分）.md",
     "README.md",
     "未命名",
