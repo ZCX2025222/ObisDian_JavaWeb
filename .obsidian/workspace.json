@@ -80,17 +80,17 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "欢迎.md",
+                "file": "JavaWeb（部分）.md",
                 "followCursor": false,
                 "showSearch": true,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "欢迎 的大纲"
+              "title": "JavaWeb（部分） 的大纲"
             }
           }
         ],
-        "currentTab": 2
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
@@ -197,7 +197,7 @@
       "obsidian-git:打开Git源代码管理": false
     }
   },
-  "active": "61d3e2549f259158",
+  "active": "e7cf8cc72978a7fb",
   "lastOpenFiles": [
     "bat脚本（暂存）.md",
     "JavaWeb（部分）.md",
