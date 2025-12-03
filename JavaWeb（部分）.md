@@ -804,18 +804,18 @@ JSTL是一个不断完善的开放源代码的jsp标签库。
 语法格式如下：
 ```jsp
 <!--没有标签体-->
-<c:if test="testCondition" vat="result" 
+<c:if test="testCondition" [var="result" ]
 [scope="{page|request|session|application}"]/>
 
 <!--有标签体-->
-<c:if test="testCondition" var="result"
+<c:if test="testCondition" [var="result"]
 [scope="{page|request|session|application}"]>
 	你好
 </c:if>
 ```
 属性含义如下：
 - test属性：用于设置逻辑表达式。
-- var属性：用于指定逻辑表达式中变量的名字。
+- var属性：可选属性，用于存储条件评估的结果(true/false)，而不是用于引用要判断的对象。
 - scope属性：用于指定 var 变量的作用范围，默认为 page 。
 
 若 test 属性的值为true，则输出标签体中的内容，若为false，则输出空字符串。
