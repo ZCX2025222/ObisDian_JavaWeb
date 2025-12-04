@@ -35,7 +35,8 @@
               "title": "网上图书商城遇到的问题"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -94,13 +95,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "JavaWeb（部分）.md",
+                "file": "网上图书商城遇到的问题.md",
                 "followCursor": false,
                 "showSearch": true,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "JavaWeb（部分） 的大纲"
+              "title": "网上图书商城遇到的问题 的大纲"
             }
           }
         ],
@@ -211,11 +212,11 @@
       "obsidian-git:打开Git源代码管理": false
     }
   },
-  "active": "e7cf8cc72978a7fb",
+  "active": "8a3b91d134e5dd37",
   "lastOpenFiles": [
+    "JavaWeb（部分）.md",
     "网上图书商城遇到的问题.md",
     "HTML.md",
-    "JavaWeb（部分）.md",
     "JavaWeb遇到的问题.md",
     "CSS.md",
     "JavaScript.md",
