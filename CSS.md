@@ -854,7 +854,7 @@ div{
 - 法1：手动内减
 	- 解决计算多余大小，手动在内容中减去（手动内减）。
 - 法2：自动内减
-	- 给盒子设置属性 box-sizing : border-box ; 即可。
+	- 给盒子设置属性 **box-sizing : border-box;** 即可。
 	- 浏览器会自动计算多余大小，自动在内容中减去。
 
 
@@ -1224,7 +1224,9 @@ div{
 
 举个例子：
 ```css
-
+.user img{
+    vertical-align: middle;
+}
 ```
 
 ## 光标类型 cursor
@@ -1516,3 +1518,21 @@ div:hover{css}
 
 display: inline-block; 不知道颜色意识
 
+
+在写网页前清除网页部分布局：
+```css
+*{
+    margin: 0;                 /* 清除所有外边距 */
+    padding: 0;                /* 清除所有内边距 */
+    box-sizing: border-box;    /* 使边距不计入盒子宽高 */
+    list-style: none;          /* 清除列表样式 */
+    text-decoration: none;     /* 清除文本样式 */
+}
+
+/* 使用伪元素解决父盒子中子元素使用浮动时父盒子高度塌陷问题 */
+.clearfix::after{
+    content: '';       /* 伪元素内容为空 */
+    display: block;    /* 将伪元素转换为块级元素 */
+    clear: both;        /* 清除左右浮动 */
+}
+```
