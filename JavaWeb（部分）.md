@@ -149,11 +149,12 @@ String name = req.getParameter("name"); //返回name对应的一个值。
 
 ## 域
 在JavaWeb中，**域指的是数据的有效范围和生命周期**。它提供了在不同组件（Servlet、JSP、Filter等）之间共享数据的机制。
-### 3个域对象
+### 4个域对象
 主要有一下3种域对象，按范围由**小到到大**排列：
 
 |        域名         |       范围        |       生命周期       |        共享对象        |
 | :---------------: | :-------------: | :--------------: | :----------------: |
+|       page域       |  仅在当前JSP页面内有效。  |   页面执行完毕后立即销毁。   |    pageContext     |
 |   Request（请求域）    |  一次HTTP请求范围内。   |   从请求开始到响应结束。    | HttpServletRequest |
 |   Session域（会话域）   | 一次用户会话（浏览器不关闭）。 | 从会话开始到会话超时或手动销毁。 |    HttpSession     |
 | Application域（应用域） |    整个Web应用。     |   从应用启动到应用停止。    |   ServletContext   |
@@ -182,6 +183,25 @@ void removeAttribute(String name);
 // 获取所有属性名
 Enumeration<String> getAttributeNames();
 ```
+
+### page域的使用
+在JSP中，可以通过以下方式操作page域：
+```jsp
+<!-- 存储数据到page域 -->
+<% pageContext.setAttriute("key", "value"); %>
+
+<!-- 从page域中获取数据 -->
+<% String value = (String)pageContext.getAttriute("key"); %>
+
+<!-- 使用EL表达式获取page域 -->
+${pageScope.key}
+```
+
+page域的应用场景：
+1. **页面内部数据共享**:当数据只在当前JSP页面内使用时。
+2. **临时变量存储**:存储页面处理过程中的临时数据。
+3. **减少内存占用**:对于只需要在当前页面使用的数据，使用page域避免占用更大作用域的资源。
+
 
 
 ---
@@ -1059,7 +1079,7 @@ ResultSet rs = stmt.executeQuery(sql);
 
 # 未完待续
 
-# 为域的部分添加page域
+
 
 
 
