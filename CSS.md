@@ -1461,6 +1461,165 @@ border-radius: 左上角 右上角 右下角 左下角;
 ---
 
 # CSS变换 transform（待记录）
+## 1. 认识 transform
+作用：
+	`transform` 是 CSS3 中的一个强大属性，用于对元素进行 2D 或 3D 变换，包括：移动、旋转、缩放、倾斜、3D变换 。
+
+基本语法：
+```css
+选择器{
+	transform:函数(值);
+	transform-origin:x轴 y轴 z轴; /* 变换原点 */
+}
+```
+
+## 2. 2D 变换函数
+### 2.1 平移（translate）
+```css
+/* 水平移动 */
+transform: translateX(100px);
+
+/* 垂直移动 */
+transform: translateY(50px);
+
+/* 同时水平和垂直移动 */
+transform: translate(100px, 50px); /* x, y */
+```
+
+### 2.2 缩放（scale）
+```css
+/* 均匀缩放 */
+transform: scale(1.5); /* 放大1.5倍 */
+transform: scale(0.5); /* 缩小一半 */
+
+/* 非均匀缩放 */
+transform: scaleX(2); /* 宽度放大2倍 */
+transform: scaleY(0.5); /* 高度缩小一半 */
+transform: scale(2, 0.5); /* 宽度2倍，高度一半 */
+```
+
+### 2.3 旋转（rotate）
+```css
+/* 2D旋转 */
+transform: rotate(45deg); /* 顺时针45度 */
+transform: rotate(-90deg); /* 逆时针90度 */
+```
+
+### 2.4 倾斜（skew）
+```css
+/* 水平倾斜 */
+transform: skewX(30deg);
+
+/* 垂直倾斜 */
+transform: skewY(20deg);
+
+/* 同时倾斜 */
+transform: skew(30deg, 20deg); /* x, y */
+```
+
+### 2.5 矩阵变换（matrix）
+```css
+/* 2D矩阵变换 */
+transform: matrix(a, b, c, d, e, f);
+/* 
+  a: 水平缩放
+  b: 垂直倾斜
+  c: 水平倾斜
+  d: 垂直缩放
+  e: 水平移动
+  f: 垂直移动
+*/
+```
+
+## 3. 3D 变换函数
+### 3.1 3D 平移
+```css
+transform: translateZ(100px);
+transform: translate3d(100px, 50px, 200px); /* x, y, z */
+```
+
+### 3.2 3D 缩放
+```css
+transform: scaleZ(2);
+transform: scale3d(1.5, 1.5, 2);
+```
+
+### 3.3 3D 旋转
+```css
+transform: rotateX(45deg); /* 绕X轴旋转 */
+transform: rotateY(60deg); /* 绕Y轴旋转 */
+transform: rotateZ(30deg); /* 绕Z轴旋转 */
+
+/* 自定义轴旋转 */
+transform: rotate3d(1, 1, 0, 45deg); /* x, y, z, angle */
+```
+
+### 3.4 3D 矩阵
+```css
+transform: matrix3d(...16个值...);
+```
+
+## 4. 变换原点 transform-origin
+```css
+/* 关键字 */
+transform-origin: center;    /* 默认 */
+transform-origin: left top;
+transform-origin: right bottom;
+
+/* 百分比 */
+transform-origin: 50% 50%;   /* 中心 */
+transform-origin: 0% 0%;     /* 左上角 */
+transform-origin: 100% 100%; /* 右下角 */
+
+/* 长度值 */
+transform-origin: 10px 20px;
+
+/* 3D原点 */
+transform-origin: 50% 50% 100px;
+```
+
+## 5. 3D 变换相关属性
+### 5.1 perspective（透视）
+```css
+/* 在父元素上设置 */
+.container {
+  perspective: 500px; /* 透视距离 */
+}
+
+/* 或作为transform函数 */
+transform: perspective(500px) rotateY(45deg);
+```
+
+### 5.2 perspective-origin（透视原点）
+```css
+.container {
+  perspective: 500px;
+  perspective-origin: 25% 75%; /* 观察点位置 */
+}
+```
+
+### 5.3 transform-style（变换样式）
+```css
+.container {
+  transform-style: flat;      /* 默认，子元素2D呈现 */
+  transform-style: preserve-3d; /* 子元素保留3D位置 */
+}
+```
+
+### 5.4 backface-visibility（背面可见性）
+```css
+.card {
+  backface-visibility: hidden; /* 背面不可见 */
+  backface-visibility: visible; /* 默认，背面可见 */
+}
+```
+
+## 6. 启用GPU加速
+```css
+.element {
+  transform: translateZ(0); /* 或 translate3d(0,0,0) */
+}
+```
 
 
 # CSS伪类选择器
