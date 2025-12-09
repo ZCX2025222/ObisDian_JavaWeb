@@ -29,7 +29,7 @@
 
 ## 2.外联式
 ```css
-div{background-color: rgb(0, 255, 38);}                                                                                                                                                                                                                      
+div{background-color: rgb(0, 255, 38);}            
 ```
 ```html
 <head>  
@@ -937,7 +937,44 @@ div{
 
 ---
 
-## 6. 盒子实际大小计算公式
+## 6. 阴影 box-shadow
+作用：
+	用于在元素的**外部或内部**添加一个或多个阴影效果，可以创建深度、层次感和立体效果。
+
+特点：
+1. 不影响布局：阴影不占空间，不会影响其他元素的排列。
+2. 可叠加：可以同时应用多个阴影。
+3. 支持圆角：阴影会跟随元素的 `border-radius` 形状。
+4. 高性能：硬件加速，动画流畅。
+
+
+语法结构：
+```css
+box-shadow: [inset] [offset-x] [offset-y] [blur-radius] [spread-radius] [color];
+```
+
+| 参数            | 说明              | 例子                        | 是否必须 |
+| ------------- | --------------- | ------------------------- | ---- |
+| inset         | 阴影类型（内阴影/外阴影）   | inset 或 省略                | 可选   |
+| offset-x      | 水平偏移量           | 10px（右），-10px（左）          | 必须   |
+| offset-y      | 垂直偏移量           | 10px（下），-10px（上）          | 必须   |
+| blur-radius   | 模糊半径（越大越模糊）     | 5px，20px（0=不模糊）           | 可选   |
+| spread-radius | 扩展半径（正=扩大,负=缩小） | 5px，-5px                  | 可选   |
+| color         | 阴影颜色            | \#000，raba（0，0，0，0.5），red | 可选   |
+
+速查表：
+
+| 效果   | 代码片段                                          |
+| ---- | --------------------------------------------- |
+| 轻微悬浮 | box-shadow: 0 4px 6px rgba(0,0,0,0.1)         |
+| 明显悬浮 | box-shadow: 0 10px 20px rgba(0,0,0,0.15)      |
+| 底部阴影 | box-shadow: 0 5px 15px rgba(0,0,0,0.2)        |
+| 四周发光 | box-shadow: 0 0 20px rgba(0,150,255,0.5)      |
+| 内凹效果 | box-shadow: inset 3px 3px 5px rgba(0,0,0,0.2) |
+| 双层边框 | box-shadow: 0 0 0 2px \#fff, 0 0 0 4px #000   |
+| 顶部光晕 | box-shadow: 0 -5px 15px rgba(255,255,255,0.8) |
+
+## 7. 盒子实际大小计算公式
 
 **1\. 注意点：** 
 1. 设置width和height是内容的宽高！
@@ -959,7 +996,7 @@ div{
 
 ---
 
-## 7. 不会撑大盒子的特殊情况
+## 8. 不会撑大盒子的特殊情况
 对于块级元素：
 1. 如果子盒子没有设置宽度，此时宽度默认是父盒子的宽度。
 
@@ -967,7 +1004,7 @@ div{
 
 
 
-## 8. 清除默认内外边距
+## 9. 清除默认内外边距
 场景：
 - 浏览器会默认给部分标签设置默认的margin和padding，但一般在项目开始前需要先清除这些标签默认的margin和padding，后续自己设置。
 
@@ -985,7 +1022,7 @@ div{
 
 ```
 
-## 9. 盒子居中
+## 10. 盒子居中
 设置：
 ```css
 div{
@@ -996,7 +1033,7 @@ div{
 	0：设置上下外边距为0。
 	auto：设置左右外边距为平局。
 
-## 10. 外边距折叠现象 – 塌陷现象
+## 11. 外边距折叠现象 – 塌陷现象
 场景：**互相嵌套** 的 **块级元素**，子元素的 **margin-top** 会作用在父元素上
 结果：导致父元素**一起往下移动。**
 解决方法：
@@ -1006,7 +1043,7 @@ div{
 4. 设置**浮动**。
 
 
-## 11. 行内元素的margin和padding无效情况
+## 12. 行内元素的margin和padding无效情况
 场景：给行内元素设置margin和padding时
 结果：
 1. 水平方向的margin和padding布局中有效！
@@ -1460,6 +1497,129 @@ border-radius: 左上角 右上角 右下角 左下角;
 
 ---
 
+
+# CSS渐变
+## 1. 认识 CSS渐变
+定义：CSS代码创建的两种及以上颜色的平滑过渡区域。
+类型：CSS图像（`<image>`）的一种。
+有三大渐变类型：
+
+| 类型   | 语法函数              | 方向特点    | 常见应用          |
+| ---- | ----------------- | ------- | ------------- |
+| 线性渐变 | linear-gradient() | 沿直线方向   | 按钮背景、页面背景、分隔线 |
+| 径向渐变 | radial-gradient() | 从中心向外扩散 | 圆形元素、光晕效果、聚光灯 |
+| 锥形渐变 | conic-gradient()  | 围绕中心旋转  | 饼图、色轮、时钟样式    |
+
+## 2. 线性渐变
+```css
+/* 基本语法 */
+background: linear-gradient([方向], 颜色1 [位置], 颜色2 [位置], ...);
+
+/* 示例 */
+.simple {
+    /* 默认从上到下 */
+    background: linear-gradient(red, blue);
+}
+
+.horizontal {
+    /* 从左到右 */
+    background: linear-gradient(to right, #ff7e5f, #feb47b);
+}
+
+.diagonal {
+    /* 45度角 */
+    background: linear-gradient(45deg, #3a7bd5, #00d2ff);
+}
+
+.multi-color {
+    /* 多颜色带精确位置 */
+    background: linear-gradient(
+        to right,
+        red 0%,      /* 起始 */
+        yellow 30%,   /* 30%位置 */
+        blue 60%,     /* 60%位置 */
+        purple 100%   /* 结束 */
+    );
+}
+```
+
+## 3. 径向渐变
+```css
+/* 基本语法 */
+background: radial-gradient([形状] [大小] at [位置], 颜色1, 颜色2, ...);
+
+/* 示例 */
+.circle {
+    /* 默认从中心圆形扩散 */
+    background: radial-gradient(circle, #ff9a9e, #fad0c4);
+}
+
+.ellipse {
+    /* 椭圆形 */
+    background: radial-gradient(ellipse at center, #a1c4fd, #c2e9fb);
+}
+
+.positioned {
+    /* 指定位置 */
+    background: radial-gradient(circle at top right, yellow, red, transparent);
+}
+```
+
+## 4. 锥形渐变
+```css
+/* 基本语法 */
+background: conic-gradient([from 角度] at [位置], 颜色1 [角度], 颜色2 [角度], ...);
+
+/* 示例 */
+.color-wheel {
+    /* 色轮 */
+    background: conic-gradient(red, yellow, lime, aqua, blue, magenta, red);
+    border-radius: 50%; /* 变成圆形 */
+}
+
+.pie-chart {
+    /* 饼图（四等分） */
+    background: conic-gradient(
+        #ff6384 0deg 90deg,
+        #36a2eb 90deg 180deg,
+        #ffce56 180deg 270deg,
+        #4bc0c0 270deg 360deg
+    );
+}
+```
+
+## 5. 重复渐变
+```css
+/* 重复线性渐变 - 条纹效果 */
+.stripes {
+    background: repeating-linear-gradient(
+        45deg,
+        #f0f0f0 0px, #f0f0f0 10px,
+        #ccc 10px, #ccc 20px
+    );
+}
+
+/* 重复径向渐变 - 同心圆 */
+.target {
+    background: repeating-radial-gradient(
+        circle,
+        #fff 0, #fff 10px,
+        #000 10px, #000 20px
+    );
+}
+
+/* 重复锥形渐变 - 旋转条纹 */
+.conic-stripes {
+    background: repeating-conic-gradient(
+        #fff 0deg 15deg,
+        #000 15deg 30deg
+    );
+}
+```
+
+
+
+
 # CSS动画 - transform（变换）
 ## 1. 认识 transform
 作用：
@@ -1700,6 +1860,24 @@ transition-delay: 0.3s;            /* 0.3秒后开始 */
 transition-delay: -0.5s;           /* 负值：从动画中途开始 */
 ```
 
+## 3. transition 属性连写
+```css
+/* 从左往右依次是：过渡属性 持续时间 缓动函数 延时 */
+/* 可以同时定义多个属性的过渡效果，每个属性用“,”隔开 */
+transition: property1 duration1 timing-function1 delay1,
+            property2 duration2 timing-function2 delay2,
+            property3 duration3 timing-function3 delay3;
+```
+
+## 4. 无动画设置（不懂）
+```css
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
+}
+```
+
 # 未完，差示例
 
 
@@ -1841,8 +2019,6 @@ div:hover{css}
 
 
 # 待记录的部分（先看这个）
-将 [[#CSS变换 transform（待记录）]] 记录完。
-
 记录这个布局：
 	居中效果
 	display: flex
