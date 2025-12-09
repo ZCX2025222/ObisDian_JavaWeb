@@ -393,3 +393,41 @@ mucli 的中文注释版配置文件：![[assets/文件/mycli 配置文件（中
 
 ![](assets/MySQL数据库/鹿.gif)
 
+
+
+---
+
+# MySQL 数据库导出
+使用 **mysqldump** ，MySQL官方提供的数据库备份工具。
+一般在用户安装MySQL时就自动安装了 mysqldump 。
+如果没有安装，自己去网上搜。
+
+## 1. 备份（导出）数据库 >
+在命令行（非MySQL客户端）执行，注意用**反引号**包裹中文库名：
+```bash
+mysqldump -u 你的用户名 -p --default-character-set=utf8mb4 `中文数据库名` > 自定义数据库名_backup.sql
+```
+其中：
+- `-p`：回车后会提示输入密码。
+- `--default-character-set=utf8mb4`：确保正确处理中文。
+
+
+## 2. sql 文件存储位置
+执行此指令后会生成一个 sql 文件，**文件存储位置在你执行该指令时所在的目录。**
+如果不知道终端执行此命令时所处的位置，可输入 **pwd** 命令来查看当前所处路径。
+如果想指定 sql 文件生成的位置，可以在 ">" 后添加目标生成路径。
+如：
+```bash
+# 保存到当前用户的“文档”文件夹（Windows）
+mysqldump -u root -p `实验1` > "%USERPROFILE%\Documents\实验1_backup.sql"
+```
+
+## 3. 恢复（导入）数据库 <
+在MySQL服务器上执行：
+```bash
+# 第一条命令：创建一个同名数据库（如果不存在）。
+mysql -u 对方用户名 -p --default-character-set=utf8mb4 -e "CREATE DATABASE IF NOT EXISTS \`实验1\`;"
+
+# 第二条命令：将数据导入。
+mysql -u 对方用户名 -p --default-character-set=utf8mb4 `实验1` < 实验1_backup.sql
+```
