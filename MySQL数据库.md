@@ -1,5 +1,66 @@
 
+# MySQL服务的开启/关闭
+在终端里启动/关闭 MySQL 服务：
+```bash
+# 启动MySQL服务。
+net start mysql;
+# 关闭MySQL服务。
+net stop mysql;
+```
+
+在终端里打开MySQL：
+```bash
+mysql -u 用户名 -p;
+```
+
+退出MySQL：
+```mysql
+exit
+```
+
+# 推荐工具：mycli
+## 认识及使用
+介绍：mycli 是一款python编写的带**语法高亮、自动补全、语法提示**的终端工具，非常好用。
+安装mycli：[mycli](https://www.mycli.net/)
+打开mycli：
+	在终端中输入：`mycli -u 用户名 -p;` 后，输入密码即可，和MySQL的登陆一模一样。
+
+## mycli 遇到的问题
+1.字符匹配查询下，某字段下的中文记录未显示
+原因：
+1. 分页导致的记录隐藏。
+2. 列宽不足的内容截断。
+3. 表头颜色与背景的冲突渲染。
+
+
+
+| 配置模块             | 问题点                                                                   | 修改后的配置                                                                                                                                               | 修改效果                                                             |
+| ---------------- | --------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
+| \[main]          | enable_pager = True<br>pager = 'less'<br>auto_vertical_output = False | enable_pager = False<br>pager = ''<br>auto_vertical_output = True                                                                                    | 1. 彻底禁用分页，避免结果集截断。<br>2. 宽记录自动垂直显示，适配长字段内容。                      |
+| \[display]       | column_width = 30<br>charset = utf8mb4                                | column_width = 50<br>charset = utf8mb4                                                                                                               | 1. 扩大列宽至 50，适配中文长字段（如 “计算机技术与计算思维”）。<br>2. 强制 UTF-8 编码，解决中文显示异常。 |
+| \[init-commands] | set_utf8mb4 = "SET character_set_results = utf8mb4"                   | set_utf8mb4 = "SET NAMES utf8mb4; SET character_set_client = utf8mb4; SET character_set_connection = utf8mb4; SET character_set_database = utf8mb4;" | 全链路同步字符集（客户端、连接、数据库、结果集），彻底避免编码断层。                               |
+| \[colors]        | `output.header = "#00ff5f bold"`（与深色背景冲突，显示白块）                        | output.header = "#ffffff bold"                                                                                                                       | 表头（字段名）改为白色加粗，与深色终端背景形成高对比度，解决 “白方块” 渲染异常。                       |
+
+mycli 的配置文件：![[assets/文件/mycli 配置文件/myclirc.txt]]
+mucli 的中文注释版配置文件：![[assets/文件/mycli 配置文件（中文注释版）/myclirc.txt]]
+记得将文件名改成：".myclirc"
+
+
+
 ---
+
+
+# 数据库的创建
+
+
+
+
+
+
+
+
+---
+
 
 # 外键约束开关
 ```mysql
@@ -366,36 +427,6 @@ IS NULL
 
 
 
-
-# mycli 遇到的问题
-1.字符匹配查询下，某字段下的中文记录未显示
-原因：
-1. 分页导致的记录隐藏。
-2. 列宽不足的内容截断。
-3. 表头颜色与背景的冲突渲染。
-
-
-
-| 配置模块             | 问题点                                                                   | 修改后的配置                                                                                                                                               | 修改效果                                                             |
-| ---------------- | --------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
-| \[main]          | enable_pager = True<br>pager = 'less'<br>auto_vertical_output = False | enable_pager = False<br>pager = ''<br>auto_vertical_output = True                                                                                    | 1. 彻底禁用分页，避免结果集截断。<br>2. 宽记录自动垂直显示，适配长字段内容。                      |
-| \[display]       | column_width = 30<br>charset = utf8mb4                                | column_width = 50<br>charset = utf8mb4                                                                                                               | 1. 扩大列宽至 50，适配中文长字段（如 “计算机技术与计算思维”）。<br>2. 强制 UTF-8 编码，解决中文显示异常。 |
-| \[init-commands] | set_utf8mb4 = "SET character_set_results = utf8mb4"                   | set_utf8mb4 = "SET NAMES utf8mb4; SET character_set_client = utf8mb4; SET character_set_connection = utf8mb4; SET character_set_database = utf8mb4;" | 全链路同步字符集（客户端、连接、数据库、结果集），彻底避免编码断层。                               |
-| \[colors]        | `output.header = "#00ff5f bold"`（与深色背景冲突，显示白块）                        | output.header = "#ffffff bold"                                                                                                                       | 表头（字段名）改为白色加粗，与深色终端背景形成高对比度，解决 “白方块” 渲染异常。                       |
-
-mycli 的配置文件：![[assets/文件/mycli 配置文件/myclirc.txt]]
-mucli 的中文注释版配置文件：![[assets/文件/mycli 配置文件（中文注释版）/myclirc.txt]]
-记得将文件名改成：".myclirc"
-
-
-
----
-
-![](assets/MySQL数据库/鹿.gif)
-
-
-
----
 
 # MySQL 数据库导出
 使用 **mysqldump** ，MySQL官方提供的数据库备份工具。
