@@ -1460,7 +1460,7 @@ border-radius: 左上角 右上角 右下角 左下角;
 
 ---
 
-# CSS变换 transform（待记录）
+# CSS动画 - transform（变换）
 ## 1. 认识 transform
 作用：
 	`transform` 是 CSS3 中的一个强大属性，用于对元素进行 2D 或 3D 变换，包括：移动、旋转、缩放、倾斜、3D变换 。
@@ -1472,6 +1472,9 @@ border-radius: 左上角 右上角 右下角 左下角;
 	transform-origin:x轴 y轴 z轴; /* 变换原点 */
 }
 ```
+
+注意：
+	只写 transform 的属性是**不会有**动画效果的。因为 transform 的属性只决定了动画的最终效果，其中变换的过程，要靠 **transition** 或 **animation** 来实现，所以要实现动画效果，需要配合这两个使用。
 
 ## 2. 2D 变换函数
 ### 2.1 平移（translate）
@@ -1620,6 +1623,85 @@ transform: perspective(500px) rotateY(45deg);
   transform: translateZ(0); /* 或 translate3d(0,0,0) */
 }
 ```
+
+
+
+---
+
+
+# CSS动画 - transition（过渡）
+## 1. 认识 transition
+介绍：
+	**transition（过渡）** 是CSS3中用于让元素样式**平滑变化**的属性。当元素的CSS属性值发生变化时，`transition` 会在这两个值之间创建**平滑的中间帧**，形成动画效果。
+
+特性：
+- **被动触发**：只有属性值改变时才工作。
+- **补间动画**：自动计算开始和结束状态之间的中间值。
+
+
+工作流程：
+```css
+/* 基本工作流程 */
+.element {
+  width: 100px;                    /* 初始状态 */
+  transition: width 0.5s ease;     /* 监听width变化 */
+}
+
+.element:hover {
+  width: 200px;                    /* 最终状态 */
+  /* transition自动生成从100px到200px的0.5秒动画 */
+}
+```
+
+## 2. transition 属性
+### 2.1 property - 指定要过渡的属性
+```css
+transition-property: width;        /* 只过渡宽度 */
+transition-property: width, height; /* 过渡多个属性 */
+transition-property: all;          /* 过渡所有可过渡属性 */
+transition-property: none;         /* 无过渡效果 */
+```
+
+### 2.2 duration - 过渡持续时间
+```css
+transition-duration: 0.5s;         /* 0.5秒 */
+transition-duration: 500ms;        /* 500毫秒 */
+transition-duration: 2s, 0.5s;     /* 多个属性分别设置时间 */
+```
+
+### 2.3 timing-function - 过渡速度曲线
+控制动画的**加速度变化**，是流畅感的关键：
+```css
+/* 关键字值 */
+transition-timing-function: ease;           /* 默认，慢→快→慢 */
+transition-timing-function: linear;         /* 匀速 */
+transition-timing-function: ease-in;        /* 慢→快 */
+transition-timing-function: ease-out;       /* 快→慢 */
+transition-timing-function: ease-in-out;    /* 慢→快→慢（比ease平缓） */
+transition-timing-function: steps(4);       /* 分4步跳跃 */
+
+/* 贝塞尔曲线 - 高度自定义 */
+transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+/* cubic-bezier(x1, y1, x2, y2) 四个点定义曲线 */
+```
+
+**常见贝塞尔曲线值**：
+- `cubic-bezier(.25, .1, .25, 1)` → 等同于 `ease`
+- `cubic-bezier(0, 0, 1, 1)` → 等同于 `linear`
+- `cubic-bezier(.42, 0, 1, 1)` → 等同于 `ease-in`
+- `cubic-bezier(0, 0, .58, 1)` → 等同于 `ease-out`
+- `cubic-bezier(.42, 0, .58, 1)` → 等同于 `ease-in-out`
+
+
+### 2.4 delay - 过渡开始前的延迟
+```css
+transition-delay: 0s;              /* 立即开始（默认） */
+transition-delay: 0.3s;            /* 0.3秒后开始 */
+transition-delay: -0.5s;           /* 负值：从动画中途开始 */
+```
+
+# 未完，差示例
+
 
 
 # CSS伪类选择器

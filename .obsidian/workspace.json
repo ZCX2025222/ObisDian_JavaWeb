@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "CSS.md",
+                "file": "MySQL数据库.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "CSS"
+              "title": "MySQL数据库"
             }
           }
         ]
@@ -80,13 +80,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "CSS.md",
+                "file": "MySQL数据库.md",
                 "followCursor": false,
                 "showSearch": true,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "CSS 的大纲"
+              "title": "MySQL数据库 的大纲"
             }
           }
         ],
@@ -199,8 +199,8 @@
   },
   "active": "e7cf8cc72978a7fb",
   "lastOpenFiles": [
-    "HTML.md",
     "CSS.md",
+    "HTML.md",
     "bat脚本（暂存）.md",
     "C语言指针（暂存）.md",
     "JavaWeb（部分）.md",
