@@ -11,10 +11,14 @@
             "id": "b8977243b357e73a",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "CSS.md",
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "新标签页"
+              "title": "CSS"
             }
           }
         ]
@@ -36,7 +40,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "box-shadow",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -76,20 +80,22 @@
             "state": {
               "type": "outline",
               "state": {
+                "file": "CSS.md",
                 "followCursor": false,
                 "showSearch": true,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "大纲"
+              "title": "CSS 的大纲"
             }
           }
         ],
-        "currentTab": 2
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 200,
+    "collapsed": true
   },
   "right": {
     "id": "5c06164cf052e030",
@@ -192,7 +198,7 @@
       "obsidian-git:打开Git源代码管理": false
     }
   },
-  "active": "7830817302a2b781",
+  "active": "b8977243b357e73a",
   "lastOpenFiles": [
     "MySQL数据库.md",
     "CSS.md",

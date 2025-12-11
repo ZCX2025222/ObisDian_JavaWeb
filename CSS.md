@@ -1344,6 +1344,239 @@ div{
 
 ---
 
+# CSS布局 - Flexbox 布局
+## 1. 认识 Flexbox
+Flexbox 又叫 弹性盒子，特点是：一维布局，适合线性排列。
+
+有两个轴：
+- - **主轴（Main Axis）**：由 `flex-direction` 定义的方向
+- **交叉轴（Cross Axis）**：垂直于主轴的方向
+
+
+两个容器：
+- **Flex 容器**：设置 `display: flex` 的元素
+- **Flex 项目**：Flex 容器的**直接子元素**
+
+
+## 2. Flex 容器属性
+### 2.1 display - 定义容器类型
+```css
+.container {
+  display: flex;          /* 块级弹性容器，类型块级元素，独占一行 */
+  display: inline-flex;   /* 内联弹性容器，类型行级元素，多元同行 */
+}
+```
+
+### 2.2 flex-direction - 主轴方向
+```css
+.container {
+  flex-direction: row;            /* 默认：从左到右 */
+  flex-direction: row-reverse;    /* 从右到左 */
+  flex-direction: column;         /* 从上到下 */
+  flex-direction: column-reverse; /* 从下到上 */
+}
+```
+
+### 2.3 flex-wrap - 是否换行
+```css
+.container {
+  flex-wrap: nowrap;      /* 默认：不换行（可能溢出） */
+  flex-wrap: wrap;        /* 换行（从上到下） */
+  flex-wrap: wrap-reverse;/* 换行（从下到上） */
+}
+```
+
+### 2.4 flex-flow - 简写
+```css
+.container {
+  flex-flow: row nowrap;  /* direction + wrap */
+}
+```
+
+### 2.5 justify-content - 主轴对齐
+```css
+.container {
+  /* 从主轴起点开始排列 */
+  justify-content: flex-start;    /* 默认 */
+  
+  /* 从主轴终点开始排列 */
+  justify-content: flex-end;
+  
+  /* 居中排列 */
+  justify-content: center;
+  
+  /* 两端对齐，项目间间隔相等 */
+  justify-content: space-between;
+  
+  /* 每个项目两侧间隔相等 */
+  justify-content: space-around;
+  
+  /* 项目间和边缘间隔都相等 */
+  justify-content: space-evenly;
+}
+```
+
+### 2.6 align-items - 交叉轴对齐（单行）
+```css
+.container {
+  /* 拉伸填满容器高度 */
+  align-items: stretch;     /* 默认 */
+  
+  /* 从交叉轴起点开始排列 */
+  align-items: flex-start;
+  
+  /* 从交叉轴终点开始排列 */
+  align-items: flex-end;
+  
+  /* 居中对齐 */
+  align-items: center;
+  
+  /* 基线对齐（文本底部对齐） */
+  align-items: baseline;
+}
+```
+
+### 2.7 align-content - 交叉轴对齐（多行）
+```css
+.container {
+  align-content: stretch;      /* 默认：拉伸填满 */
+  align-content: flex-start;   /* 从交叉轴起点开始 */
+  align-content: flex-end;     /* 从交叉轴终点开始 */
+  align-content: center;       /* 居中 */
+  align-content: space-between;/* 两端对齐 */
+  align-content: space-around; /* 每行间隔相等 */
+}
+```
+
+## 3. Flex 项目属性
+### 3.1order - 排序
+```css
+.item {
+  order: 0;  /* 默认值，数值越小排列越靠前 */
+}
+```
+
+### 3.2 flex-grow - 放大比例
+```css
+.item {
+  flex-grow: 0;  /* 默认：不放大 */
+  flex-grow: 1;  /* 按比例放大 */
+}
+```
+
+### 3.3 flex-shrink - 缩小比例
+```css
+.item {
+  flex-shrink: 1;  /* 默认：空间不足时缩小 */
+  flex-shrink: 0;  /* 不缩小（保持原尺寸） */
+}
+```
+
+### 3.4 flex-basis - 初始大小
+```css
+.item {
+  flex-basis: auto;    /* 默认：项目原大小 */
+  flex-basis: 100px;   /* 固定宽度 */
+  flex-basis: 20%;     /* 百分比宽度 */
+  flex-basis: 0;       /* 从0开始分配空间 */
+}
+```
+
+### 3.5 flex - 简写属性
+```css
+.item {
+  /* 常用模式 */
+  flex: initial;      /* 0 1 auto（默认） */
+  flex: auto;         /* 1 1 auto（可伸缩） */
+  flex: none;         /* 0 0 auto（不可伸缩） */
+  flex: 1;            /* 1 1 0%（等分） */
+  
+  /* 完整写法：flex-grow flex-shrink flex-basis */
+  flex: 2 1 100px;
+}
+```
+
+### 3.6 align-self - 单独对齐
+```css
+.item {
+  align-self: auto;        /* 继承容器的 align-items */
+  align-self: flex-start;  /* 顶部对齐 */
+  align-self: flex-end;    /* 底部对齐 */
+  align-self: center;      /* 居中对齐 */
+  align-self: stretch;     /* 拉伸填满 */
+  align-self: baseline;    /* 基线对齐 */
+}
+```
+
+## 4. 使用布局模式
+### 4.1 水平垂直居中
+```css
+.center {
+  display: flex;
+  justify-content: center;  /* 水平居中 */
+  align-items: center;      /* 垂直居中 */
+}
+```
+
+### 4.2 等分布局
+```css
+.container {
+  display: flex;
+}
+.item {
+  flex: 1;  /* 每个项目等分空间 */
+}
+```
+
+### 4.3 固定 + 自适应
+```css
+.container {
+  display: flex;
+}
+.sidebar {
+  flex: 0 0 250px;  /* 不放大，不缩小，固定250px */
+}
+.content {
+  flex: 1;          /* 占据剩余所有空间 */
+}
+```
+
+### 4.4 底部对齐
+```css
+.container {
+  display: flex;
+  align-items: flex-end;  /* 所有项目底部对齐 */
+}
+```
+
+### 4.5 圣杯布局
+```css
+.container {
+  display: flex;
+  flex-direction: column;  /* 垂直排列 */
+}
+.header, .footer {
+  flex: 0 0 auto;          /* 固定高度 */
+}
+.content {
+  display: flex;           /* 内容区内部flex */
+  flex: 1;                 /* 占据中间空间 */
+}
+```
+
+## 5. 常用简写值
+```txt
+flex: 0 1 auto    → 初始（默认）
+flex: 1 1 auto    → 自动
+flex: 0 0 auto    → 无弹性
+flex: 1           → 等分（常用）
+flex: none        → 无弹性
+```
+
+
+
+---
+
 # CSS装饰
 ## 垂直对齐方式 vertical-align
 基线：浏览器文字类型元素排版中存在用于对齐的基线（baseline）。
@@ -2022,10 +2255,9 @@ div:hover{css}
 记录这个布局：
 	居中效果
 	display: flex
-	 align-items: center;
+	align-items: center;
 	justify-content: center;
 
-记录：边框阴影添加：    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 
 display: inline-block; 不知道颜色意识
 
