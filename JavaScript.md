@@ -142,7 +142,7 @@ var user = {
 
 
 
-# typeof 运算符
+# typeof 方法
 作用：判断数据类型(判断基本数据类型使用)。
 基本数据包括：数值（number），字符串（string），布尔值（boolean），对象（object）。
 
@@ -469,4 +469,197 @@ for (var i = 0; i < 5; i++)
 	console.log(i);
 }
 ```
+
+
+# 字符串
+**字符串就是零个或多个排在一起的字符，放在单引号或双引号之中。**
+```js
+var a = "双引号";
+var b = '单引号';
+var c = " '双引号嵌套单引号' ";
+var d = ' "单引号嵌套双引号" ';
+
+// 相同的引号要想连续嵌套，需要再被显示的引号前加“\”来将引号转义。
+var e = " \"双双嵌套\" ";
+var f = ' \'单单嵌套\' ';
+```
+
+
+# length 属性
+作用：length 属性返回字符串的长度，该属性也是无法改变的。
+比如：
+```js
+var s = "abcdefg";
+console.log(s.length); // 返回7
+```
+
+
+# 字符串常用方法
+## 1. charAt()
+`charAt()` 把字符串当作字符串数组，输入数字索引来查找字符并返回。
+索引从0开始。
+```js
+var s = new String('abcdefg');
+console.log('abcdefg'.charAt(3)); // 返回 'd'
+console.log('abcdefg'.charAt(s.length - 1)); // 返回 'g'
+```
+
+如果参数为负数，或大于等于字符串的长度，`charAt()` 返回空字符串。
+```js
+console.log('abcdefg'.charAt(-1)); // 返回 ""
+console.log('abcdefg'.charAt(10)); // 返回 ""
+```
+
+
+## 2. concat()
+`concat()` 方法用于连接两个字符串，返回一个新字符串，不改变原字符串。
+```js
+var s1 = '你好';
+var s2 = '世界';
+console.log(s1.concat(s2)); // 输出："你好世界"
+```
+
+`concat()`可以传递多个参数，每个参数用 ” , “ 隔开。
+```js
+console.log('1'.concat('2', '3')); // 输出："123"
+```
+
+如果参数不是字符串，`concat()` 方法会将其先转为字符串，然后再连接。
+```js
+var one = 1;
+var two = 2;
+var three = '3'
+console.log(one.concat(two, three)); // 输出："123"
+```
+
+如果做字符串相加，是不需要使用`concat()`，可以使用+连接字符串。
+```js
+console.log('1' + '2' + '3'); // 输出："123"
+```
+
+`concat()`和`+`虽然功能相同，但还是有区别的:
+1. `concat()`不管什么类型直接合并成字符串。
+```js
+var one = 1;
+var two = 2;
+var three = '3'
+console.log(one.concat(two, three)); // 输出："123"
+```
+2. `+`是遇到数字类型直接做运算，遇到字符串和字符串相连接。
+```js
+var one = 1;
+var two = 2;
+var three = '3'
+console.log(one + two + three); // 输出："33"
+```
+
+## 3. substring()
+作用：
+1. `substing()` 方法用于从原字符串取出子字符串并返回，不改变原字符串。
+2. 它的第一个参数表示子字符串的开始位置，第二个位置表示结束位置(**返回结果不含该位置**)
+
+```js
+"abcd".substring(0, 2); // 返回“ab”
+```
+
+如果省略第二个参数，则表示子字符串一直到**原字符串的结束**。
+```js
+"abcd".substring(1); // 返回“bcd”
+```
+
+如果第一个参数**大于**第二个参数， `substring()` 方法会**自动更换两个参数的位置**。
+```js
+"abcd".substring(3, 0); // 返回“abc”
+```
+
+如果参数是负数，substring 方法会**自动将负数转为0**。
+```js
+"abcd".substring(-1, 2); // 返回“ab”
+```
+
+## 4. substr()
+`subst()` 方法用于从原字符串取出子字符串并返回，不改变原字符串，跟 substing 方法的作用相同。
+`subsr()` 方法的第一个参数是子字符串的开始位置(从0开始计算)，第二个参数是**子字符串的长度**。
+```js
+"abcdefg".substr(1,5); // 返回"bcde"
+```
+
+如果省略第二个参数，则表示子字符串一直到原字符串的结束。
+```js
+"abcdefg".substr(1); // 返回"bcdefg"
+```
+
+如果第一个参数是负数，表示倒数计算的字符位置。
+第二个参数无论设置多大的值，返回的子字符串长度都不会超出第一个参数。
+```js
+"abcdefg".substr(-2); // 返回"fg"
+// 3 < 4，返回3个。
+"abcdefg".substr(-4, 3); // 返回"efg"
+// 5 > 4，但实际返回4个。
+"abcdefg".substr(-4, 5); // 返回"defg"
+```
+
+如果第二个参数是负数，将被自动转为0，因此会返回空字符串。
+```js
+"abcdefg".substr(-2, -10); // 返回""
+```
+
+## 5. indexOf()
+`indexor()`方法用于确定一个字符串在另一个字符串中**第一次出现**的位置，返回结果是**匹配开始的位置**。
+如果返回-1，就表示不匹配。
+```js
+"hello world".indexOf('0'); // 返回4
+"hello world".indexOf('abc'); // 返回-1
+```
+
+`indexor()`方法还可以接受第二个参数，表示从该位置开始向后匹配。
+```js
+"hello world".indexOf('0', 6); // 返回7
+```
+
+## 6. trim()
+`tim()` 方法用于去除字符串两端的空格，返回一个新字符串，不改变原字符串。
+```js
+"  hello world  ".trim(); // 返回："hello world"
+```
+
+该方法去除的不仅是空格，还包括制表符(\t、\v)、换行符(\n)和回车符(\r)。
+```js
+"\r\hello world \t".trim(); // 返回:"hello world"
+```
+
+ES6扩展方法：
+1. `trimEnd()`：仅去掉最右边侧的空格。
+2. `rimStart()`：仅去掉最左侧的空格。
+```js
+"  hello world  ".trimEnd(); // 返回："  hello world"
+"  hello world  ".trimStart(); // 返回："hello world  "
+```
+
+## 7. split()
+`split()` 方法按照给定规则分割字符串，返回一个由分割出来的子字符串组成的**数组**。
+```js
+"ab|cd|efg".split('|'); // 返回["ab", "cd", "efg"]
+```
+
+如果分割规则为**空字符串**，则返回数组的成员是原字符串的**每一个字符**。
+```js
+"ab|cd|efg".split(''); // 返回['a', 'b', 'c', 'd','e', 'f', 'g']
+```
+
+如果省略参数，则返回数组的唯一成员就是原字符串。
+```js
+"ab|cd|efg".split(); // 返回["abcdefg"]
+```
+
+`split()`方法还可以接受第二个参数，限定返回数组的**最大成员数**。
+```js
+"ab|cd|efg".split('|', 0); // 返回[]
+"ab|cd|efg".split('|', 2); // 返回["ab", "cd"]
+"ab|cd|efg".split('|', 5); // 返回["ab", "cd", "efg"]
+```
+
+
+# 数组
+
 
