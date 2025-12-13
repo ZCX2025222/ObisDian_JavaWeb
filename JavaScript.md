@@ -1063,30 +1063,368 @@ function leftDays()
 
 
 # DOM
+## 1. DOM介绍
+DOM 是JavaScript 操作网页的接口，全称为“文档对象模型”(Document Object Model)。它的作用是将网页转为一个JavaScript 对象，从而可以用脚本进行各种操作(比如对元素增删内容)。
 
+浏览器会根据 DOM 模型，将结构化文档HTML解析成一系列的节点，再由这些节点组成一个树状结构(DOMTree)。所有的节点和最终的树状结构，都有规范的对外接口。
+
+DOM 只是一个接口规范，可以用各种语言实现。所以严格地说，DOM不是JavaScript语法的一部分，但是DOM 操作是JavaScript最常见的任务，离开了 DOM,JavaScript 就无法控制网页。另一方面，JavaScript也是最常用于 DOM 操作的语言。
+
+## 2. 节点
+DOM 的最小组成单位叫做节点(node)。
+文档的树形结构(DOM 树)，就是由各种不同类型的节点组成。
+每个节点可以看作是文档树的一片叶子。
+
+节点的类型有7种：
+
+| 节点类型             | 说明                        |
+| ---------------- | ------------------------- |
+| Document         | 整个文档树的顶层节点。               |
+| DocumentType     | doctype标签。                |
+| Element          | 网页的各种HTML标签。              |
+| Attribute        | 网页元素的属性(比如class="right")。 |
+| Text             | 标签之间或标签包含的文本。             |
+| Comment          | 注释。                       |
+| DocumentFragment | 文档的片段。                    |
+
+## 3. 节点树
+一个文档的所有节点，按照所在的层级，可以抽象成一种树状结构。
+这种树状结构就是 DOM 树。
+它有一个顶层节点，下一层都是顶层节点的子节点，然后子节点又有自己的子节点，就这样层层衍生出一个金字塔结构，倒过来就像一棵树。
+
+浏览器原生提供`document`节点，代表整个文档。
+```js
+document  // 整个文档树
+```
+
+除了根节点，其他节点都有三种层级关系：
+1. **父节点关系(parentNode)**：直接的那个上级节点。
+2. **子节点关系(childNodes)**：直接的下级节点。
+3. **同级节点关系(sibling)**：拥有同一个父节点的节点。
+
+
+## 4. Node.nodeType属性
+不同节点的nodeType属性值和对应的常量如下：
+
+| 节点                       | 属性值 | 对应常量                        |
+| ------------------------ | --- | --------------------------- |
+| 文档节点(document)           | 9   | Node.DOCUMENTNODE           |
+| 元素节点(element)            | 1   | Node.ELEMENT_NODE           |
+| 属性节点(attr)               | 2   | Node.ATTRIBUTE NODE         |
+| 文本节点(text)               | 3   | Node.TEXT_NODE              |
+| 文档片断节点(DocumentFragment) | 11  | Node.DOCUMENT_FRAGMENT_NODE |
+
+```js
+document.nodeType // 9
+document.nodeType === Node.DOCUMENT_NODE // true
+```
+
+
+# document对象方法
+## 1. 获取元素
+### 1.1 getElementsByTagName()
+`document.getElementsByTagName()`方法搜索 HTML 标签名，返回符合条件的元素。
+它的返回值是一个类似**数组对象**(HTMLcolection 实例)，可以实时反映 HTML 文档的变化。
+如果没有任何匹配的元素，就返回一个空集。
+```js
+var paras = document.getElementsByTagName('p');
+```
+如果传入`*`，就可以返回文档中所有 HTML 元素。
+```js
+var allElements = document.getElementsByTagName('*');
+```
+
+### 1.2 getElementsByclassName()
+`document.getElementsByclassName()`方法返回一个类似数组的对象(HTMLCollection实例)。
+包括了所有 class 名字符合指定条件的元素，元素的变化实时反映在返回结果中。
+```js
+var elements = document.getElementsByClassName(names);
+```
+由于`class`是保留字，所以 JavaScript 一律使用`className`表示 CSS 的`class`参数可以是多个`class`，它们之间使用空格分隔。
+```js
+var elements = document.getElementsByClassName('foo bar');
+```
+
+### 1.3 getElementsByName()
+`document.getElementsByName()`方法用于选择拥有`name`属性的 HTML 元素(比如 `<form>`、`<radio>`、`<img>`等)。
+返回一个类似数组的的对象( `NodeList`实例)，因为`name`属性相同的元素可能不止一个。
+```js
+// 表单位 <form name="abcd"></form>
+var forms = document.getElementsByName("abcd");
+```
+
+### 1.4 getElementByid()
+ `document.getElementByid()`方法返回匹配指定`id`属性的元素节点。
+ 如果没有发现匹配的节点，则返回`null`。
+```js
+var elem = document.getElementByid("paral");
+```
+注意，该方法的参数是**大小写敏感**的。
+比如，如果某个节点的`id`属性是`main`，邦么`document.getElementByld('Main')`将返回`null`。
+
+### 1.5 quenyselector()
+`document.quenyselector()`方法接受一个 CSS 选择器作为参数，返回匹配该选择器的元素节点。
+如果有多个节点满足匹配条件，则返回**第一个**匹配的节点。
+如果没有发现匹配的节点，则返回`null`。
+```js
+var el1 = document.quenyselector(".myclass");
+```
+
+### 1.6 queryselectorAll()
+`document.queryselectorAll()`方法与`queryselector`用法类似，区别是返回一个`NodeList`对象，包含所有匹配给定选择器的节点。
+```js
+var elementList = document.queryselectorAll(".myclass");
+```
+
+## 2. 创建元素
+### 2.1 createElement()
+`document.createElement()`方法用来生成元素节点，并返回该节点。
+```js
+var newDiv = document.createElement("div");
+```
+
+### 2.2 createTextNode()
+`document.createTextNode()`方法用来生成文本节点(`Text`实例)，并返回该节点。
+它的参数是文本节点的内容。
+```js
+var newDiv = document.createElement("div");
+var newContent = document.createTextNode("Hello");
+newDiv.appendChild(newContent);
+```
+
+### 2.3 createAtibute()
+`document.createAtibute()`方法生成一个新的属性节点(`Attr`实例)，并返回它。
+```js
+var attribute = document.createAtibute(name);
+```
+```js
+var root = document.getElementByid("root");
+var it = document.createAttribute("itbaizhan");
+it.value = "it";
+root.setAttributeNode(it);
+```
+
+
+# Element对象
+Element 对象对应网页的 HTML 元素。
+每一个 HTML 元素，在 DOM 树上都会转化成一个 Element 节点对象(以下简称元素节点)。
+
+## 1. Element属性
+### 1.1 id
+`Element.id`属性返回指定元素的`id`属性，该属性可读写。
+```js
+// HTML 代码为 <p id="foo">
+var p = document.querySelector('p');
+p.id; // 返回"foo"
+```
+
+### 1.2 className
+`className`属性用来读写当前元素节点的`class`属性。
+它的值是一个字符串，每个`class`之间用空格分割。
+```js
+ // HTML 代码 <div class="one two three" id="myDiv"></div>
+ var div= document.getElementById('myDiv');
+ div.className // 返回"one two three"
+```
+
+### 1.3 classList
+`classList`对象有下列方法：
+1. **add()**：增加一个`class`。
+2. **remove()**：移除一个`class`。
+3. **contains()**：检查当前元素是否包含某个`class`。
+4. **toggle()**：将某个`class`移入或移出当前元素。
+```js
+var div = document.getElementById('myDiv');
+
+div.classList.add("mycssclass");
+div.classList.add("foo","bar");
+div.classList.remove("mycssclass");
+div.classList.toggle("mycssclass"); // 如果mycssclass 不存在就加入，否则移除
+div.classList.contains("mycssclass"); // 返回 true 或者 false
+```
+
+### 1.4 innerHTML
+`Element.innerHTML`属性返回一个字符串，等同于该元素包含的所有 HTML 代码。
+该属性可读写，常用来设置某个节点的内容。
+它能改写所有元素节点的内容，包括`<HTML>`和`<body>`元素。
+```js
+el.innerHTML = '';
+```
+
+### 1.5 innerText
+`innerText`和`innerHTML`类似，不同的是`innerText`无法识别元素，会直接渲染成字符串。
+
+## 2. Element获取元素位置
+
+
+| 属性           |                          描述                           |
+| ------------ | :---------------------------------------------------: |
+| clientHeight |      获取元素高度包括`padding`部分，但是不包括`border`、`margin`       |
+| clientWidth  |      获取元素宽度包括`padding`部分，但是不包括`border`、`margin`       |
+| scrollHeight | 元素总高度，它包括`padding`，但是不包括 `border`、`margin`包括溢出的不可见内容。 |
+| scrollwidth  | 元素总宽度，它包括`padding`，但是不包括`border`、`margin`包括溢出的不可见内容。  |
+| scrollLeft   |                  元素的水平滚动条向右滚动的像素数量。                   |
+| scrollTop    |                  元素的垂直滚动条向下滚动的像素数量。                   |
+| offsetHeight |    元素的 CSS 垂直高度(单位像素)，包括元素本身的高度、`padding`和`border`    |
+| offsetWidth  |    元素的 CSS 水平宽度(单位像素)，包括元素本身的高度、`padding`和`border`    |
+| offsetLeft   |                     到定位父级左边界的间距。                      |
+| offsetTop    |                     到定位父级上边界的间距。                      |
+
+### 2.1 clientHeight 和 clientWidth
+`Element.cientHeigh`属性返回一个整数值，表示元素节点的 CSS 高度(单位像素)，只对块级元素生效，对于行内元素返回0。如果块级元素没有设置 CSS 高度，则返回实际高度。
+除了元素本身的高度，它还包括`padding`部分，但是不包括 `border`、`margin`。如果有水平滚动条，还要减去水平滚动条的高度。注意，这个值始终是整数，如果是小数会被四舍五入。
+`Element.cientwidmh`属性返回元素节点的 CSS 宽度，同样只对块级元素有效，也是只包括元素本身的宽度和`padding`，如果有垂直滚动条，还要减去垂直滚动条的宽度。
+`document.documentElement`的`clientHeigh`属性，返回当前视口的高度(即浏览器窗口的高度)。`document.body`的高度则是网页的实际高度。
+```js
+// 视口高度
+document.documentElement.clientHeight
+// 网页总高度
+document.body.clientHeight
+```
+
+### 2.2 scrollHeight 和 scrollWidth
+`Element.scrollHeight`属性返回一个整数值(小数会四舍五入)，表示当前元素的总高度(单位像素)，它包括`padding`，但是不包括`border`、`margin`以及水平滚动条的高度(如果有水平滚动条的话)。
+`Element.scrolwidth`属性表示当前元素的总宽度(单位像素)，其他地方都与`scrolHeight`属性类似。这两个属性只读整张网页的总高度可以从`document.documentElement`或`document.body`上读取。
+```js
+// 返回网页的总高度
+document.documentElement.scrollHeight
+document.body.scro1lHeight
+```
+
+### 2.3 scrollLeft 和 scrollTop
+`Element.scrolet`属性表示当前元素的水平滚动条向右侧滚动的像素数量，`Elemen.scrolTop`属性表示当前元素的垂直滚动条向下滚动的像素数量。对于那些没有滚动条的网页元素，这两个属性总是等于0。
+如果要査看整张网页的水平的和垂直的滚动距离，要从`document.documentElement`元素上读取。
+```js
+document.documentElement.scrollLeft
+document.documentElement.scrollTop
+```
+
+### 2.4 offsetHeight 和 offsetWidth
+`Element.ofsetHeight`属性返回一个整数，表示元素的 CSS 垂直高度(单位像素)，包括元素本身的高度`padding`和`border`，以及水平滚动条的高度(如果存在滚动条)。
+`Element.ofsetwidn`属性表示元素的 CSS 水平宽度(单位像素)，其他都与`Element.ofsetHeight`一致。
+这两个属性都是只读属性，只比`Element.clientHeight`和`Element.clienwidth`多了边框的高度或宽度。如果元素的 CSS设为不可见(比如`display: none;`)，则返回0。
+
+### 2.5 offsetLeft 和 offsetTop
+`Element.ofsetLet`返回当前元素左上角相对于`Element.ofsetParent`节点的水平位移，`Element.ofsetTop` 返回垂直位移，单位为像素。
+通常，这两个值是指相对于父节点的位移。
+
+
+# CSS操作
+## 1. HTML 元素的 styie 属性
+操作 CSS 样式最简单的方法，就是使用网页元素节点的 `setAtribue`方法直接操作网页元素的`styie`属性。
+```js
+div.setAttribute(
+	"style",
+	"background-color:red;"+ "border:lpx solid black;"
+	);
+```
+
+## 2. 元素节点的 style 属性
+```js
+var divstyle = document.queryselector("div").style;
+
+divstyle.backgroundcolor = "red";
+divstyle.border = "lpx solid black";
+divstyle.width = "100px";
+divstyle.height = "100px";
+divstyle.fontsizer = "10em";
+```
+
+## 3. cssText属性
+```js
+var divstyle = document.queryselector('div').style;
+
+divstyle.cssText = "background-color: red;"
+	+ "border: 1px solid black;"
+	+ "height: 100px;"
+	+ "width: 100px;";
+```
+
+
+# 事件处理程序
+事件处理程序分为：
+1. HTML 事件处理。
+2. DOM0级事件处理。
+3. DOM2级事件处理。
+
+
+## 1. HTML事件
+缺点：JS 与 HTML 和 CSS 混合，不推荐。
+```html
+<!DOCTYPE html>
+<html>
+	<head lang="en">
+		<meta charset="UTF-8">
+		<title>JS事件详解--事件处理</title>
+	</head>
+	<body>
+		<div>
+			<tutton id="btn1" onclick="demo()">按钮</button>
+		</div>
+		<script>
+			function demo()
+			{
+				alert("hello html事件处理");
+			}
+		</script>
+	</body>
+</html>
+```
+
+## 2. DOM0级事件
+优点：JS 与 HTML 和 CSS 分离。
+缺点：无法同时添加多个事件。
+```js
+
+<body>
+	<div id="div">
+		<button id="btn1">按钮</button>
+	</div>
+	<script>
+		var btnl=document.getElementById("btn1");
+		btn1.onclick=function(){alert("He110 DOM0级事件处理程序1");}//被覆盖掉
+		btn1.onclick=function(){alert("He110 DOM0级事件处理程序2");}
+	</script>
+</body>
+```
+
+## 3. DOM2级事件
+优点：事件不会被覆盖 。
+缺点：写起来麻烦。
+```html
+<body>
+	<div>
+		<button id="btn1">按钮</button>
+	</div>
+	<script>
+		var btnl=document.getElementById("btn1");
+		btn1.addEventListener("click",demo1);
+		btn1.addEventListener("click",demo2);
+		btn1.addEventListener("click",demo3);
+		function demo1()
+		{
+			alert("DoM2级事件处理程序1")
+		}
+		function demo2()
+		{
+			alert("DOM2级事件处理程序2")
+		}
+		function demo3()
+		{
+			alert("DOM2级事件处理程序3)
+		}
+		btn1.removeEventListener("click",demo2);
+	</script>
+</body>
+```
+
+
+# 事件类型
+## 1. 鼠标事件
 
 ```js
 
 ```
-
-```js
-
-```
-
-
-```js
-
-```
-
-
-```js
-
-```
-
-
-
-
-
 
 
 
