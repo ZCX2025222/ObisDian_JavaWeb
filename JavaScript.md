@@ -929,6 +929,164 @@ console.log(num); // 输出3
 
 
 # 对象
+## 1. 对象介绍
+什么是对象?对象(object)是JavaScript 语言的**核心概念**，也是最重要的数据类型。
+简单说，对象就是一组“**键值对**”(key-value)的集合，是一种无序的复合数据集合。
+```js
+var user = {
+	name: "abcd",
+	age: "13"
+};
+```
+
+对象的每一个键名又称为“**属性**”(property)，它的“**键值**“可以是任何数据类型。
+如果一个属性的值为**函数**，通常把这个属性称为“**方法**”，它可以像函数那样调用。
+```js
+var user = {
+	getName: function(name){
+		return name;
+	}
+};
+
+user.genName("abcd"); // 返回"abcd"
+```
+
+如果属性的值还是一个对象，就形成了链式引用。
+```js
+var user = {
+	name: "abcd",
+	age: 13,
+	// 值为两个键值对，属于对象。
+	container:{
+		frontEnd:['a', 'b', 'c'],
+		backEnd:["java", "python"]
+	}
+}
+
+user.container.frontEnd; // 返回['a', 'b', 'c']
+```
+
+## 2. Math对象
+Math是JavaScript 的原生对象，提供各种数学功能。
+
+### 2.1 Math.abs()
+`Math.abs()`方法返回参数值的绝对值。
+```js
+Math.abs(2);  // 返回2
+Math.abs(-2); // 返回2
+```
+
+### 2.2Math.max()和Math.min()
+`Math.max()`方法返回参数之中最大的那个值。
+`Math.min()`返回最小的那个值。
+如果参数为空，`Math.min()`返回`lnfinity`，`Math.max()`返回`-lnfinity`。
+```js
+Math.max(2, -1, 5); // 返回5
+Math.min(2, -1, 5); // 返回-1
+Math.max();         // 返回lnfinity
+Math.min();         // 返回-lnginity
+```
+
+### 2.3 Math.floor() 和 Math.ceil()
+`Math.floor()`方法返回**小于**参数值的最大整数（向下取整）。
+`Math.ceil()`方法返回**大于**参数值的最小整数（向上取整）。
+```js
+Math.floor(3.2);  // 返回3
+Math.floor(-3.7); // 返回-4
+Math.ceil(3.2);   // 返回4
+Math.ceil(-3.7);  // 返回-3
+```
+
+### 2.4 Math.random()
+`Math.random()`返回 0 到 1 之间的一个伪随机数，可能等于 0，但是一定小于 1。
+```js
+Math.random(); // 0.65482957295975
+```
+任意范围内的随机数生成函数如下：
+```js
+function getRandomArbitrary(min, max){
+	return Math.random() * (max - min) + min;
+}
+
+getRandomArbitrary(5, 10);
+```
+
+## 3. Date对象
+`Date`对象是 JavaScript 原生的时间库。它以1970年1月1日00:00:00作为时间的零点，可以表示的时间范围是前后各1亿天(单位为毫秒)。
+
+### 3.1 Date.now()
+`Date.now`方法返回当前时间距离时间零点(1970年1月1日 00:00:00 UTC)的毫秒数，相当于 Unix 时间戳乘以1000
+```js
+Date.now(); // 1635216733395
+```
+
+### 3.2 时间戳
+时间戳是指格林威治时间1970年01月01日00时00分00秒(北京时间1970年01月01日08时00分00秒)起至现在的总秒数。
+格林威治和北京时间就是时区的不同.
+Unix是20世纪70年代初出现的一个操作系统，Unix认为1970年1月1日0点是时间纪元。JavaScript也就遵循了这一约束。
+
+## 4. get方法获取时间
+`Date`对象提供了一系列`get`方法，用来获取实例对象某个方面的值:
+
+| 实例方法get类         | 说明                           |
+| :--------------- | :--------------------------- |
+| getTime()        | 返回实例距离1970年1月1日00:00:00的毫秒数。 |
+| getDate()        | 返回实例对象对应每个月的几号(从1开始)。        |
+| getDay()         | 返回星期几，星期日为0，星期一为1，以此类推。      |
+| getYear()        | 返回距离1900的年数。                 |
+| getFullYear()    | 返回四位的年份。                     |
+| getMonth()       | 返回月份(0表示1月，11表示12月)。         |
+| getHours()       | 返回小时(0-23)。                  |
+| getMiliseconds() | 返回亳秒(0-999)。                 |
+| getMinutes()     | 返回分钟(0-59)。                  |
+| getSeconds()     | 返回秒(0-59)。                   |
+
+```js
+var d = new Date('january6，2022');
+d.getDate()     // 返回6
+d.getMonth()    // 返回0
+d.getYear()     // 返回122
+d.getFu1lYear() // 返回2022
+```
+
+编写函数获得本年度剩余天数。
+```js
+function leftDays()
+{
+	var today = new Date();
+	var endYear = new Date(today.getFullYear(), 11, 31, 23, 59, 59, 999);
+	var msPerDay = 24 * 60 * 60 * 1000;
+	
+	return Math.round((endYear.getTime() - today.getTime()) / msPerDay);
+}
+```
+
+
+# DOM
+
+
+```js
+
+```
+
+```js
+
+```
+
+
+```js
+
+```
+
+
+```js
+
+```
+
+
+
+
+
 
 
 
