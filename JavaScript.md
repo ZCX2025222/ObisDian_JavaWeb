@@ -110,7 +110,6 @@ console.1og("要输出的内容");
 ```
 
 
-
 # 数据类型
 JavaScript 语言的每一个值，都属于某一种数据类型。JavaScript 的数据类型，共有六种。
 这六种又可分为原始类型（3个）和合成类型（3个）。
@@ -661,5 +660,281 @@ ES6扩展方法：
 
 
 # 数组
+## 1. 认识数组
+数组(array)是按次序排列的一组值。
+每个值的位置都有编号(从0开始)，整个数组用方括号表示。
+```js
+var arr = ["ab", "cd", "efg"];
+```
+两端的方括号是数组的标志。 `ab` 是0号位置，`cd` 是1号位置，`efg` 是2号位置。(位置也被称为下标)
+
+除了在定义时赋值，数组也可以先定义后赋值。
+```js
+var arr = [];
+
+arr[0] = "ab";
+arr[0] = "cd";
+arr[0] = "efg";
+```
+
+**任何类型**的数据，都可以放入数组。
+```js
+var arr = [100, [1, 2, 3], false];
+```
+
+如果数组的元素还是数组，就形成了多维数组。
+```js
+// 一个二维数组
+var a = [[1 ,2 ], [3 , 4]];
+```
+
+数组的`length`属性，返回数组的成员数量。
+```js
+var arr = ["ab", "cd", "efg"];
+console.log(arr.length); // 返回3
+```
+
+
+## 2. 数组的遍历
+
+for循环遍历数组
+```js
+var a = ["ab", "cd", "efg"];
+
+for (var i; i<a.length; i++)
+{
+	console.log(a[i]);
+}
+```
+
+while循环遍历数组
+```js
+var a = ["ab", "cd", "efg"];
+
+while (i < a.length)
+{
+	console.log(a[i]);
+	i++;
+}
+```
+
+for...in遍历数组
+```js
+var a = ["ab", "cd", "efg"];
+
+for (var i in a)
+{
+	console.log(a[i]);
+}
+```
+
+
+# 数组常用的方法
+## 1. Array.isArray()
+是静态方法。
+`Array.isArray()` 方法返回一个布尔值，**表示参数是否为数组**。
+它可以**弥补** `typeof` 运算符的不足。
+如果是数组，则返回`true`，否则返回`flase`。
+```js
+var arr = ["你好", 100, trye];
+
+console.log(typeof arr); // 返回object
+Array.isArray(arr);      // 返回true
+```
+
+## 2. push()和pop()
+`push()`方法用于在数组的**未端添加一个或多个元素**，并返回添加新元素后的数组长度。
+注意，该方法会**改变**原数组。
+```js
+var arr = [];
+arr.push("你好"); // 1
+arr.push("hello"); // 2
+arr.push(true, {}); // 4
+
+console.log(arr[arr]); // 返回["你好", "hello", true, {}]
+```
+
+`pop()` 方法用于**删除数组的最后一个元素**，并返回该元素。
+注意，该方法会改变原数组。
+```js
+var arr = ["你好", "hello", true, {}];
+
+arr.pop(); // {}被删除
+arr.pop(); // true被删除
+
+console.log(arr[arr]); // 返回["你好", "hello"]
+```
+
+## 3. shift()和unshift()
+`shift()`方法用于**删除数组的第一个元素**，并返回该元素。
+注意，该方法会改变原数组。
+```js
+var arr = ["你好", "hello", true];
+
+arr.shift(); // "你好"被删除。
+console.log(arr[arr]); // 返回["hello", true]
+```
+
+`shift()`方法可以遍历并清空一个数组。
+```js
+var list = [1, 2, 3, 4, 5, 6];
+var item;
+
+while(item = list.shift())
+{
+	console.log(item); // 最后返回[]
+}
+```
+
+`unshift()`方法用于在数组的**第一个位置添加元素**，并返回添加新元素后的数组长度。
+注意，该方法会改变原数组。
+```js
+var arr = ["你好", "hello", true];
+
+arr.unshift("世界"); // 4
+console.log(arr[arr]); // 返回["世界", "你好", "hello", true]
+```
+
+`unshift()` 方法可以接受多个参数，这些参数都会添加到目标数组头部..
+```js
+var arr = ["你好", "hello", true];
+
+arr.shift("1", "2", "3"); // 6
+console.log(arr[arr]); // 返回["1", "2", "3", "你好", "hello", true]
+```
+
+## 4. join()
+ `join()` 方法以指定参数作为分隔符，将所有数组成员**连接为一个字符串**返回。
+ 如果不提供参数，默认用逗号分隔。
+```js
+var a = [1, 2, 3, 4, 5, 6];
+
+a.jojn('');    // 返回"123456"
+a.join(' ');   // 返回"1 2 3 4 5 6"
+a.join(' | '); // 返回"1 | 2 | 3 | 4 | 5 | 6"
+a.join();      // 返回"1,2,3,4,5,6" 
+```
+
+如果数组成员是`undefined`或`null`或空位，会被转成空字符串。
+```js
+var a = ["1", undefined, null, "2", ];
+
+a.join('-'); //返回"1---2"
+```
+
+数组的`join()`配合字符串的`split()`可以实现数组与字符串的互换。
+```js
+var arr = ["a", "b", "c"];
+var myArr = arr.join("");
+console.log(myArr);
+console.log(myArr.split(""));
+```
+
+## 5. concat()
+`coneat()`方法用于多个数组的合并。
+它将新数组的成员，添加到原数组成员的后部，然后返回一个新数组，原数组不变。
+```js
+// 返回结果为["hello", "world"]
+["hello"].concat([world]);
+
+// 返回结果为[1, 2, 3, 4, 5, 6, 7, 8, 9]
+[1, 2, 3].concat(4, 5, 6, [7, 8, 9])
+```
+
+应用场景：上拉加载，合并数据。
+
+## 6. reverse()
+`reverse()` 方法用于颠倒排列数组元素，返回改变后的数组。
+注意，该方法将改变原数组。
+```js
+var a = ['a', 'c','c'];
+a.reverse();
+console.log(a); // 返回['c', 'b', 'a']
+```
+
+实现一个字符串反转排列
+```js
+var str = "hello";
+str.split("").reverse().join("");
+```
+
+## 7. indexOf()
+`indexOf()`方法返回给定元素在数组中**第一次出现的位置**，如果没有出现则返回-1。
+```js
+var arr = ['a', 'b', 'a', 'c'];
+
+arr.indexOf('a'); // 返回0
+arr.indexOf('c'); // 返回3
+```
+
+`indexOf()`方法还可以接受第二个参数，表示搜索的开始位置。
+```js
+var arr = ['a', 'b', 'a', 'c'];
+
+arr.indexOf('a', 1); // 返回2
+arr.indexOf('b', 2); // 返回-1
+```
+
+
+# 函数 function
+函数是一段可以反复调用的代码块。
+## 1. 函数的声明
+`function`命令:
+1. `function`命令声明的代码区块，就是一个函数
+2. function命令后面是函数名，函数名后面是一对圆括号，里面是传入函数的参数。函数体放在大括号里面。
+```js
+function print(s)
+{
+	console.log(s);
+}
+```
+
+## 2. 函数名的提升
+JavaScript 引擎将函数名视同变量名，所以采用`function`命令声明函数时，整个函数会像变量声明一样，被提升到代码头部。
+```js
+print(1);
+
+function print(s)
+{
+	console.log(s);
+}
+```
+
+## 3. 函数参数
+函数运行的时候，有时需要提供外部数据，不同的外部数据会得到不同的结果，这种外部数据就叫参数。
+```js
+function square(x, y)
+{
+	console.log(x + y);
+}
+
+square(1, 2); // 返回3
+```
+
+## 4. 函数返回值
+JavaScript 函数提供两个接口实现与外界的交互：
+- 其中参数作为入口，接收外界信息。
+- 返回值作为出口，把运算结果反馈给外界。
+
+```js
+function square(x, y)
+{
+	return x + y;
+}
+
+var num = square(1, 2);
+console.log(num); // 输出3
+```
+注意：`return`后面不能再添加任何代码，因为不会执行。
+
+
+# 对象
+
+
+
+
+
+
+
 
 
