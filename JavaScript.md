@@ -1419,18 +1419,254 @@ divstyle.cssText = "background-color: red;"
 ```
 
 
-# 事件类型
+# Event事件对象
+事件发生以后，会产生一个事件对象，作为参数传递给监听函数。
+## 1. Event对象属性
+### 1.1 Event.target
+`Event.target`属性返回事件当前所在的节点。
+```js
+// HTML代码为
+//<p id="para">He11o</p>
+function setcolor(e)
+{
+	console.log(this == eltarget);
+	e.target.style.color ="red";
+}
+
+para.addEventListener("click", setcolor);
+```
+
+### 1.2 Event.type
+`Event.type`属性返回一个字符串，表示事件类型。
+事件的类型是在生成事件的时候。该属性只读。
+
+### 1.3 Event.keyCode
+`event.keyCode`属性返回按下按键的唯一数字标识。
+可以用来实现按键功能。
+
+## 2. Event对象方法
+### 2.1 preventDefault()
+`Event.preventDefault()`方法取消浏览器对当前事件的**默认行为**。
+比如点击链接后，浏览器默认会跳转到另一个页面，使用这个方法以后，就不会跳转了。
+```js
+btn.onclick = function(e)
+{
+	e.preventDefault();//阻止默认事件
+	console.1og("点击A标签");
+}
+```
+
+### 3.2 stopPropagation()
+`Event.stopPropagation()`方法阻止事件在 DOM 中**继续传播**，防止再触发定义在别的节点上的监听函数，但是不包括在当前节点上其他的事件监听函数。
+简单点说就是当**子元素**被触发产生事件后，会继续触发上层的**父元素**的事件，就像冒泡一样不断向上。该方法就是用来阻止事件冒泡的。
+```js
+btn.onclick = function(e)
+{
+	e.stopPropagation(); // 阻止事件冒泡
+	console.log("btn");
+}
+```
+
+
+# 事件类型 on
+注意：**这些事件方法在使用的时候，除了DOM2级事件，都需要添加前缀`on`。**
+
 ## 1. 鼠标事件
+鼠标事件是指与鼠标操作相关的事件。
+有以下10个事件：
+
+| 鼠标事件       | 说明                              |
+| ---------- | ------------------------------- |
+| click      | 按下鼠标时触发。                        |
+| dblclick   | 在同一个元素上双击鼠标时触发。                 |
+| mousedown  | 按下鼠标键时触发。                       |
+| mouseup    | 释放按下的鼠标键时触发。                    |
+| mousemove  | 当鼠标在节点内部移动时触发。当鼠标持续移动时，该事件会连触发。 |
+| mouseenter | 鼠标进入一个节点。时触发，进入子节点不会触发这个事件      |
+| mouseleave | 鼠标离开一个节点时触发，离开父节点不会触发这个事件。      |
+| mouseover  | 鼠标进入一个节点时触发，进入子节点会再一次触发这个事件。    |
+| mouseout   | 鼠标离开一个节点时触发，离开父节点也会触发这个事件。      |
+| wheel      | 滚动鼠标的滚轮时触发。                     |
+举个例子：
+```js
+var btnl = document.getElementById("btn1");
+btnl.onclick =function()
+	{
+		console.1og("click事件");
+	}
+```
+
+## 2. 键盘事件
+键盘事件由用户击打键盘触发，主要有：
+1. **keydown**：按下键盘时触发。
+2. **keypress**：按下有值的键时触发，即按下`Ctrl`、`Alt`、`Shift`、`Meta`这样无值的键，这个事件不会触发。对于有值的键，按下时先触发`keydawn`事件，再触发这个事件。
+3. **keyup**：松开键盘时触发该事件。
+
+```js
+username.onkeypress = function(e)
+{
+	console.1og("keypress事件");
+}
+```
+
+可以使用`event.keyCode`来获取按键的唯一数字标识。
+```js
+// 比如实现按下Enter键开始搜索功能。
+var username =document.getElementById("username");
+
+username.onkeydown = function(e)
+{
+	if(e.keycode === 13)
+	{
+		console.1og("回车");
+	}
+}
+```
+
+## 3. 表单事件
+表单事件是在使用**表单元素及输入框元素**可以监听的一系列事件。
+
+### 3.1 input事件
+input事件当 `<input>`、`<select>`、`<textarea>`的值发生变化时触发。
+对于复选框(`<input type=checkbox>`)或单选框(`<input` `type=radio>`)，用户改变选项时，也会触发这个事件。
+input事件的一个特点，就是会连续触发，比如用户每按下一次按键，就会触发一次input事件。
+```js
+var username = document.getElementById("username");
+username.oninput = function(e)
+{
+	console.1og(e.target.value);
+}
+```
+
+### 3.2 select事件
+select事件再`<input>`、`<textarea>`里面选中文本时触发。
+```js
+// HTML 代码如下
+// <input id="test" type="text" value="select me!" />
+
+var elem= document.getElementById("test");
+elem.addEventListener("select",function(e)
+{
+	console.log(e.type); // "select'}，false);
+}, false);
+```
+
+### 3.3 Change事件
+Change事件当 `<inpu>`、`<selecp>`、`<textare>`的值发生变化时触发。
+它与input事件的最大不同，就是不会连续触发，只有当**全部修改完成时**才会触发。
+```js
+var email = document.getElementById("email");
+email.onchange = function(e)
+{
+	console.log(e.target.value);
+}
+```
+
+### 3.4 reset 事件 和 submit 事件
+这两个事件发生在表单对象`<form>`上，而不是发生在表单的成员上。
+**reset 事件**：当表单重置(所有表单成员变回默认值)时触发。
+**submit 事件**：当表单数据向服务器提交时触发。
+注意，submit 事件的发生对象是`<form>`元素，而不是`<button>`元素，因为提交的是表单，而不是按钮。
+```html
+<form id="myForm" onsubmit="submitHandle">
+	<button onclick="resetHandle">重置数据</button>
+	<button>提交</button>
+</form>
+```
+```js
+var myForm = document.getElementById("myForm")
+function resetHandle()
+{
+	myForm.reset;
+}
+function submitHandle()
+{
+	console.1og("提交");
+}
+```
+
+
+# 事件代理
+由于事件会在冒泡阶段向上传播到父节点，因此可以把子节点的监听函数定义在父节点上，由父节点的监听函数统一处理多个子元素的事件。
+这种方法叫做事件的代理(delegation)。
+```js
+var ul = document.querySelector("ul");
+
+ul.addEventListener("click", function(event)
+{
+	// toLowercase译为“转换为小写”。
+	if (event.target.tagName.toLowercase() === "li"
+	{
+		// some code	
+	}
+});
+```
+
+
+# 定时器
+JavaScript 提供定时执行代码的功能，叫做定时器(timer)，主要由`setTimeout()`和`setinterval()`这两个函数来完成。它们向任务队列添加定时任务。
+
+## 1. setTimeout()
+`setTimeout()` 函数用来指定某个函数或某段代码，在多少毫秒之后执行。
+它返回一个整数，表示定时器的编号，以后可以用来取消这个定时器。
+```js
+var timerId = setTimeout(func|lcode, delay);
+```
+`setTimeout()`函数接受两个参数：
+	第一个参数`unccode`是将要推迟执行的函数名或者一段代码。
+	第二个参数`delay`是推迟执行的毫秒数。
+```js
+setTimeout(function()
+{
+	console.1og("定时器");
+}, 1000);
+```
+
+注意：
+	还有一个需要注意的地方，如果回调函数是**对象的方法**，那么 `setTmeout()`使得方法内部的`this`关键字指向**全局环境**，而不是定义时所在的那个对象。
+举个例子：
+```js
+var name = "sxt";
+var user = {
+	name:"itbaizhan",
+	getName:function()
+	{
+		setTimeout(function()
+		{
+			console.log(this.name);
+		},1000)
+	}
+};
+user.getName();
+```
+解决方案：
+```js
+var name = "sxt";
+var user = {
+	name:"itbaizhan",
+	getName:function()
+	{
+		var that = this; // 添加了这段。
+		setTimeout(function()
+		{
+			console.log(that.name); // 将this替换。
+		},1000)
+	}
+};
+user.getName();
+```
+
+定时器可以取消
+```js
+var id = setTimeout(f, 1000);
+clearTimeout(id);
+```
+
+## 2. setlnterval()
 
 ```js
 
 ```
-
-
-
-
-
-
 
 
 
