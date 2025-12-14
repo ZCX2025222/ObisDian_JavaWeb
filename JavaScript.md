@@ -1663,10 +1663,146 @@ clearTimeout(id);
 ```
 
 ## 2. setlnterval()
-
+`setinterval()`函数的用法与`setTimeout()`完全一致，区别仅仅在于`setinterval`指定某个任务每隔一段时间就执行一次，也就是**无限次**的定时执行。
 ```js
+var timer = setInterval(function()
+{
+	console.1og(2);
+}, 1000)
+```
+
+通过setInterval方法实现网页动画。
+```html
+<style>
+	#someDiv{
+	width: 100px;
+	height: 100px;
+	background: red;
+	}
+</style>
+
+<body>
+	<div id="someDiv"></div>
+	<script>
+	vardiv=document.getElementById("someDiv");
+	var opacity = 1;
+	var fader = setInterval(function()
+	{
+		opacity -= 0.05;
+		if(opacity > 0)
+		{
+			div.style.opacity = opacity;
+		}
+		else 
+		{
+			clearInterval(fader);
+		}, 30);
+	}
+	</script>
+</body>
+```
+
+定时器可以进行取消
+```js
+var id = setInterval(f，1000);
+clearInterval(id);
+```
+
+
+# JS优化 - 防抖(debounce)
+防抖严格算起来应该属于性能优化的知识，但实际上遇到的频率相当高，处理不当或者放任不管就容易引起**浏览器卡死**。
+
+从滚动条监听的例子说起
+```js
+function showTop()
+{
+	var scrollTop = document.documentElement.scrollTop;
+	console.1og("滚动条位置:"+ scro11Top);
+}
+window.onscro1l = showTop
+```
+在运行的时候会发现存在一个问题:这个函数的默认执行频率，太!高!了!。高到什么程度呢?以chrome为例，我们可以点击选中一个页面的滚动条，然后点击一次键盘的【向下方向键】，会发现函数执行了8-9次!
+
+然而实际上我们并不需要如此高频的反馈，毕竟浏览器的性能是有限的，不应该浪费在这里，所以接着讨论何优化这种场景。
+首先提出第一种思路：
+	在第一次触发事件时，不立即执行函数，而是给出一个期限值比如基于上述场景，200ms，然后
+		1. 如果在200ms内没有再次触发滚动事件，那么就执行函数。
+		2. 如果在200ms内再次触发滚动事件，那么当前的计时取消，重新开始计时。
+效果:如果短时间内大量触发同一事件，只会执行一次函数。
+
+实现：
+	既然前面都提到了计时，那实现的关键就在于`setTimeout()`这个函数，由于还需要一个变量来保存计时，考虑维护全局纯净，可以借助闭包来实现。
+```js
+function debounce(fn, delay)
+{
+	let timer = null //借助闭包
+	return function()
+	{
+		if(timer)
+		{
+			clearTimeout(timer);
+		}
+		timer=setTimeout(fn,delay)// 简化写法		
+	}
+}
+
+// 引入上面的代码。
+function showTop()
+{
+	var scrollTop = document.documentElement.scrollTop;
+	console.1og("滚动条位置:"+ scro11Top);
+}
+window.onscro1l = showTop
 
 ```
+到这里，已经把防抖实现了。
+
+防抖定义：
+	对于短时间内连续触发的事件(上面的滚动事件)，防抖的含义就是让某个时间期限(如上面的1000毫秒)内，事件处理函数只执行一次。
+
+
+# JS优化 - 节流(throttle)
+节流严格算起来应该属于性能优化的知识，但实际上遇到的频率相当高，处理不当或者放任不管就容易引起**浏览器卡死**。
+
+继续思考，使用上面的防抖方案来处理问题的结果是：
+	如果在限定时间段内，不断触发滚动事件(比如某个用户闲着无聊，按住滚动不断的拖来拖去)，只要不停止触发，理论上就永远不会输出当前距离顶部的距离。
+	但是如果产品同学的期望处理方案是:即使用户不断拖动滚动条，也能在某个时间间隔之后给出反馈呢?
+	其实很简单：我们可以设计一种类似控制阀门一样定期开放的函数，也就是让函数执行一次后，在某个时间段内暂时失效，过了这段时间后再重新激活(类似于技能冷却时间)
+	效果：如果短时间内大量触发同一事件，那么在函数执行一次之后，该函数在指定的时间期限内不再工作，直至过了这段时间才重新生效。
+
+**实现**
+这里借助`setTimeout`来做一个简单的实现，加上一个状态位`valid`来表示当前函数是否处于工作状态。
+```js
+function throttle(fn, delay){
+	let valid = true
+	return function() 
+	{
+		if(!valid)
+		{   // 休息时间 暂不接客
+			return false
+		}
+		//工作时间，执行函数并且在间隔期内把状态位设为无效
+		valid = false
+		setTimeout(function()
+		{
+			fn()
+			valid = true;
+		}, delay)
+	}
+}
+
+function showTop()
+{
+	var scrollTop = document.documentElement.scrollTop;
+	console.log("滚动条位置:" + scro1lTop);
+}
+window.onscro1l = throttle(showTop, 300);
+```
+
+如果一直拖着滚动条进行滚动，那么会以300ms的时间间隔，持续输出当前位置和顶部的距离。
+讲完了这两个技巧，下面介绍一下平时开发中常遇到的场景：
+	1. **搜索框input事件**：例如要支持输入实时搜索可以使用节流方案(间隔一段时间就必须查询相关内容)，或者实现输入间隔大于某个值(如500ms)，就当做用户输入完成，然后开始搜索，具体使用哪种方案要看业务需求。
+	2. **页面resize事件**：常见于需要做页面适配的时候。需要根据最终呈现的页面情况进行dom渲染(这种情形-般是使用防抖，因为只需要判断最后一次的变化情况)。
 
 
 
