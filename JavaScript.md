@@ -1176,6 +1176,9 @@ var el1 = document.quenyselector(".myclass");
 var elementList = document.queryselectorAll(".myclass");
 ```
 
+### 1.7 getAttribute()
+用于获取自定义属性的内容。
+
 ## 2. 创建元素
 ### 2.1 createElement()
 `document.createElement()`方法用来生成元素节点，并返回该节点。
