@@ -151,6 +151,9 @@ print("我叫{name}，今年{age}岁，来自{city}。".format(name="小明", ag
 	print("{:>10}".format("右对齐"))  # 右对齐，占10个字符宽度
 	print("{:^10}".format("居中"))    # 居中，占10个字符宽度
 	print("{:0>5}".format(42))        # 用0左填充，占5位，输出: 00042
+	
+# f-String，python3.5新特性
+	print("f你好{}")
 ```
 
 函数
@@ -217,4 +220,30 @@ cat1 = CuteCat("小花", 2, "白色")
 对象名.属性名
 print(cat1.name) # 输出："小花"
 ```
+创建类的方法
+```python
+def 方法名(self, 形参1, 形参2)
+	a = 形参1 + 形参2
+	return a
+```
 
+
+```python
+
+```
+
+
+```python
+
+```
+```python
+
+```
+
+```python
+
+```
+
+```python
+
+```
