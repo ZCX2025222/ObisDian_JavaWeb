@@ -105,7 +105,7 @@
             }
           }
         ],
-        "currentTab": 3
+        "currentTab": 2
       }
     ],
     "direction": "horizontal",
@@ -212,7 +212,7 @@
       "obsidian-git:打开Git源代码管理": false
     }
   },
-  "active": "caf2954f9a7be4fd",
+  "active": "7830817302a2b781",
   "lastOpenFiles": [
     "JavaWeb（部分）.md",
     "python快速复习（暂存）.md",

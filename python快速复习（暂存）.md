@@ -226,24 +226,122 @@ def 方法名(self, 形参1, 形参2)
 	a = 形参1 + 形参2
 	return a
 ```
-
-
+继承
+```python
+class 子类名(父类名):
+    # 子类的属性和方法
+```
+`super()`函数：该函数用于调用父类的方法，它返回父类的临时实例，可以用来访问父类的属性和方法。
+```python
+class Student(arr):
+	def __init__(self, name="小明", age=18, student_id="001", trade=90)
+	# 调用父类的__init__方法
+	super().__init__(name, age)
+	# 子类自己的属性
+	slef.student_id = student_id
+	self.grade = grade
+	
+	# 子类自己的方法
+	def get_grande(slef):
+	return f"{self.name}的成绩时{self.grade}分"
+```
+重写父类的方法
+```python
+def abc(slef, i, j):
+	result = super().abc(i, j)
+	return  f"计算结果：{result}"
+```
+多重继承（未写）
 ```python
 
+```
+
+文件读取
+```python
+# 1.使用open()函数打开文件，返回文件对象。
+f = open("./txt", "r")
+# 2.使用read()方法读取文件内容
+content = f.read()
+# 3.打印文件内容
+print(content)
+# 4.使用close()方法关闭文件
+f.close()
+```
+open()函数
+	第一个参数：文件路径(相对或绝对路径)
+	第二个参数：文件模式
+		"r" 只读模式(默认)
+		"w" 写入模式(会覆盖现有文件)
+		"a" 追加模式(在文件末尾添加内容)
+		"b" 二进制模式（用于非文本文件，如音频、图片）
+		"+" 读写模式
+	第三个参数：选择文件编码方式，如"utf-8"
+文件读取方法：
+	`read()`：读取整个文件内容。
+	`read(size)`：读取指定字节数的内容。
+	`readline()`：读取一行内容。
+	`readlines()`：读取所有行，返回列表。
+文件关闭：
+	使用`close()`方法。
+	使用`with`语句（推荐）。
+```python
+# with语句可以在对文件进行操作的语句运行结束后，自动关闭文件。
+with open("./txt"."r") as f:
+	content = f.read()
+	print(content)
+```
+
+文件写入
+```python
+# 打开文件进行写入
+f = open("文件路径", "写入模式")
+# 写入内容
+f.write("要写入的内容")
+# 关闭文件
+f.close()
+```
+`open()`函数在写入模式下的详解：
+	"w"：写入模式，覆盖现有的文件内容。
+	"a"：追加模式，在文件末尾添加内容。
+	"x"：独占创建模式，如果文件已存在则报错。
+	"wb"：读写模式，覆盖文件并允许读写。
+	"a+"：追加读写模式，在末尾追加并允许读写。
+常用写入方法：
+	`write()`：写入字符串。
+	`writelines()`：写入字符串列表。
+修改现有文件的内容：
+```python
+# 读取现有内容
+with open("./txt", "r") as f:
+    content = f.read()
+
+# 修改内容（在唐诗前添加标题）
+new_content = "《静夜思》\n" + content
+
+# 写回文件
+with open("./txt", "w") as f:
+    f.write(new_content)
+```
+
+异常捕捉：try...except...else...finally
+```python
+# 程序会从上到下运行，只要有一个except捕捉到错误，除finally外，后面的except和else都不会运行。
+try:
+	你认为会产生错误的代码
+except 异常类型1：
+	代码语句，在捕捉到“异常类型1”时会执行。
+except 异常类型2：
+	代码语句，在捕捉到“异常类型2”时会执行。
+except:
+	未指定要捕捉的异常类型，会捕捉所有异常类型，产生其它错误时会运行。
+else:
+	没有错误时运行。
+finally:
+	不管发生错误与否都会运行。 	
 ```
 
 
 ```python
 
 ```
-```python
 
-```
-
-```python
-
-```
-
-```python
-
-```
