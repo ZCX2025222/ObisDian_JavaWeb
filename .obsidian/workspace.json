@@ -182,8 +182,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200,
-    "collapsed": true
+    "width": 200
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -197,7 +196,7 @@
       "obsidian-git:打开Git源代码管理": false
     }
   },
-  "active": "e7cf8cc72978a7fb",
+  "active": "a42e3b54d2465b9c",
   "lastOpenFiles": [
     "JavaWeb遇到的问题.md",
     "JavaWeb（部分）.md",
