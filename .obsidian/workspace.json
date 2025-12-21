@@ -4,21 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "73efec964f4c1ab7",
+        "id": "42687b278870b779",
         "type": "tabs",
         "children": [
           {
-            "id": "58e7cc23f94bc254",
+            "id": "a42e3b54d2465b9c",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "JavaWeb遇到的问题.md",
+                "file": "英语笔记（暂存）.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "JavaWeb遇到的问题"
+              "title": "英语笔记（暂存）"
             }
           }
         ]
@@ -80,17 +80,17 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "JavaWeb遇到的问题.md",
+                "file": "英语笔记（暂存）.md",
                 "followCursor": false,
                 "showSearch": true,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "JavaWeb遇到的问题 的大纲"
+              "title": "英语笔记（暂存） 的大纲"
             }
           }
         ],
-        "currentTab": 2
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
@@ -197,8 +197,9 @@
       "obsidian-git:打开Git源代码管理": false
     }
   },
-  "active": "58e7cc23f94bc254",
+  "active": "e7cf8cc72978a7fb",
   "lastOpenFiles": [
+    "JavaWeb遇到的问题.md",
     "JavaWeb（部分）.md",
     "英语笔记（暂存）.md",
     "MySQL数据库.md",
@@ -210,7 +211,6 @@
     "2025-12-13.md",
     "bat脚本（暂存）.md",
     "C语言指针（暂存）.md",
-    "JavaWeb遇到的问题.md",
     "网上图书商城遇到的问题.md",
     "README.md",
     "欢迎.md",
