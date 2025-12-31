@@ -428,7 +428,7 @@ IS NULL
 
 
 
-# MySQL 数据库导出
+ # MySQL 数据库导出
 使用 **mysqldump** ，MySQL官方提供的数据库备份工具。
 一般在用户安装MySQL时就自动安装了 mysqldump 。
 如果没有安装，自己去网上搜。

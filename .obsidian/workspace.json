@@ -4,21 +4,17 @@
     "type": "split",
     "children": [
       {
-        "id": "42687b278870b779",
+        "id": "9a5c63e900641d5e",
         "type": "tabs",
         "children": [
           {
-            "id": "a42e3b54d2465b9c",
+            "id": "7c8eabaffa2164ed",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "英语笔记（暂存）.md",
-                "mode": "source",
-                "source": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "英语笔记（暂存）"
+              "title": "新标签页"
             }
           }
         ]
@@ -80,17 +76,16 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "英语笔记（暂存）.md",
                 "followCursor": false,
                 "showSearch": true,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "英语笔记（暂存） 的大纲"
+              "title": "大纲"
             }
           }
         ],
-        "currentTab": 3
+        "currentTab": 2
       }
     ],
     "direction": "horizontal",
@@ -182,7 +177,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 200,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -196,12 +192,12 @@
       "obsidian-git:打开Git源代码管理": false
     }
   },
-  "active": "a42e3b54d2465b9c",
+  "active": "7830817302a2b781",
   "lastOpenFiles": [
+    "MySQL数据库.md",
+    "英语笔记（暂存）.md",
     "JavaWeb遇到的问题.md",
     "JavaWeb（部分）.md",
-    "英语笔记（暂存）.md",
-    "MySQL数据库.md",
     "python快速复习（暂存）.md",
     "未命名",
     "CSS.md",
